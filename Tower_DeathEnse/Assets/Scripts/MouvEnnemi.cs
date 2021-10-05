@@ -5,13 +5,12 @@ using UnityEngine.AI;
 
 public class MouvEnnemi : MonoBehaviour
 {
-    public float Speed;
     public Transform Target;
-    public NavMeshAgent Ennemi;
+    public NavMeshAgent agent;
 
     private void Start()
     {
-        Ennemi.SetDestination(Target.transform.position);
+        agent.SetDestination(Target.transform.position);
     }
 
 

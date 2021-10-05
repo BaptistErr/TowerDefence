@@ -481,8 +481,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.7172413, y: 0.92, z: -23.73}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LocalScale: {x: 4.1932, y: 1, z: 1}
 =======
+=======
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
 >>>>>>> Stashed changes
   m_Children: []
@@ -763,6 +766,7 @@ MeshFilter:
   m_GameObject: {fileID: 1279529934}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1565306668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1512702162602476555, guid: 6c3976e952ea01d41a8ab25d94dffb3d, type: 3}
@@ -873,6 +877,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
 >>>>>>> Stashed changes
+=======
+--- !u!1001 &1512702163837120519
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+>>>>>>> Stashed changes
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
@@ -880,7 +890,11 @@ PrefabInstance:
       propertyPath: Target
       value: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       objectReference: {fileID: 1825248591}
+=======
+      objectReference: {fileID: 624313944}
+>>>>>>> Stashed changes
 =======
       objectReference: {fileID: 624313944}
 >>>>>>> Stashed changes
@@ -891,7 +905,11 @@ PrefabInstance:
     - target: {fileID: 1512702162602476566, guid: 6c3976e952ea01d41a8ab25d94dffb3d, type: 3}
       propertyPath: m_RootOrder
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       value: 1
+=======
+      value: 4
+>>>>>>> Stashed changes
 =======
       value: 4
 >>>>>>> Stashed changes

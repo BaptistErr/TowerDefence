@@ -37,3 +37,4 @@ sysinfo.txt
 *.unitypackage
 *.log
 Tower_DeathEnse/Assets/Scenes/SampleScene.unity
+*.log

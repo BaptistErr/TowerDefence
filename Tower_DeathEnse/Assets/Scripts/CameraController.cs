@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
 
     public Object tower;
 
+    public GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +29,8 @@ public class CameraController : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position")))
             {
-                Debug.Log("yay");
-                Debug.DrawLine(ray.origin, hit.point, Color.red, 100000f);
-                Instantiate(tower, hit.point += new Vector3(0f, 3f), Quaternion.identity);
+                Instantiate(tower, hit.transform.position + new Vector3(0f, 3f), Quaternion.identity);
+                manager.SlotTaken(hit.collider);
             }
         }
     }

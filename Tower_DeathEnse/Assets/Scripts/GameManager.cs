@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private Collider[] slotsOccupied;
+    public Object tower;
+
+    private List<Collider> slotsOccupied = new List<Collider>();
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +20,12 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void SlotTaken(Collider slot)
+    public void PlaceTower(RaycastHit slot)
     {
-        slotsOccupied[slotsOccupied.Length - 1] = slot;
-        Debug.Log(slotsOccupied);
+        if (!slotsOccupied.Contains(slot.collider))
+        {
+            Instantiate(tower, slot.transform.position + new Vector3(0f, 3f), Quaternion.identity);
+            slotsOccupied.Add(slot.collider);
+        }
     }
 }

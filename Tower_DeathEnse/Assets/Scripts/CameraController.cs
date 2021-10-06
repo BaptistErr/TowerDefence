@@ -24,11 +24,12 @@ public class CameraController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z));
-            if (Physics.Raycast(ray, out hit))
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position")))
             {
+                Debug.Log("yay");
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 100000f);
-                Instantiate(tower, hit.point, Quaternion.identity);
+                Instantiate(tower, hit.point += new Vector3(0f, 3f), Quaternion.identity);
             }
         }
     }

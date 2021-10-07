@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class TowerBehaviour : MonoBehaviour
 {
-    private SphereCollider sphere;
-
     // Start is called before the first frame update
     void Start()
     {
-        sphere = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame

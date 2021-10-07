@@ -295,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966649996185048478}
   - component: {fileID: 2289942128397148637}
+  - component: {fileID: 114449853}
   m_Layer: 0
   m_Name: RangeCollider
   m_TagString: Untagged
@@ -329,6 +330,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114449853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4695162385809234220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389969f7f536761419e1d66d0e3405c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 7835249690893709366, guid: 568e6adc129d506438f8fe5686cfcddf, type: 3}
+  TurretDamage: 0
+  speed: 50
+  target: {x: 0, y: 0, z: 0}
 --- !u!1 &8575385075007725862
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +355,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9020308389325908155}
-  - component: {fileID: 870673778}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -362,16 +378,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &870673778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8575385075007725862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389969f7f536761419e1d66d0e3405c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 0}

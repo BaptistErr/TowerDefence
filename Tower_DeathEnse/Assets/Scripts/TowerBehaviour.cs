@@ -7,6 +7,12 @@ public class TowerBehaviour : MonoBehaviour
 {
     public GameObject bullet;
 
+    public int TurretDamage;
+
+    public float speed;
+
+    public Vector3 target;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,16 +23,30 @@ public class TowerBehaviour : MonoBehaviour
     {
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("yo");
-        Vector3 target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-        transform.LookAt(target);
-        InvokeRepeating("Shoot", 0, 0);
+        target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+        StartCoroutine(Shoot(target));
     }
 
-    public void Shoot()
+    private void OnTriggerStay(Collider other)
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+        transform.parent.parent.GetChild(0).LookAt(target);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        StopCoroutine(Shoot(target));
+    }
+
+    IEnumerator Shoot(Vector3 target)
+    {
+        while (true)
+        {
+            GameObject instantiated = Instantiate(bullet, transform.position, transform.rotation);
+            instantiated.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

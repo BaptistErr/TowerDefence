@@ -15,6 +15,7 @@ public class Ennemi : MonoBehaviour
 
     public Transform Target;
     public NavMeshAgent agent;
+    private TowerBehaviour tourelle;
 
     private void Start()
     {
@@ -34,5 +35,12 @@ public class Ennemi : MonoBehaviour
             return true;
         }
         else return false;
+    }
+    private void GetDamage()
+    {
+        if (isDead() is false)
+        {
+            health -= tourelle.TurretDamage;
+        }
     }
 }

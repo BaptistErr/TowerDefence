@@ -19,6 +19,7 @@ public class Ennemi : MonoBehaviour
 
     private void Start()
     {
+       
         agent.SetDestination(Target.transform.position);
     }
     //-----------------------------

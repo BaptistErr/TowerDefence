@@ -852,6 +852,10 @@ PrefabInstance:
       propertyPath: Spawnee
       value: 
       objectReference: {fileID: 644002206}
+    - target: {fileID: 3604300343017183547, guid: 5ad25f78756aad2498f42299c44cbdb2, type: 3}
+      propertyPath: nombreMax
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3604300343017183548, guid: 5ad25f78756aad2498f42299c44cbdb2, type: 3}
       propertyPath: m_Name
       value: Spawner

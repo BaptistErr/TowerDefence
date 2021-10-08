@@ -7,7 +7,7 @@ public class TowerBehaviour : MonoBehaviour
 {
     public GameObject bullet;
 
-    public int TurretDamage;
+    public int BulletDamage;
 
     public float speed;
 

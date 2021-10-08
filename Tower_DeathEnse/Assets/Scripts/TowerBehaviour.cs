@@ -5,25 +5,33 @@ using UnityEngine;
 
 public class TowerBehaviour : MonoBehaviour
 {
-    public GameObject bullet;
+    [SerializeField]
+    private GameObject bullet;
 
     public int BulletDamage;
 
-    public Vector3 target;
+    [SerializeField]
+    private Vector3 target;
 
-    public Transform cannon;
+    [SerializeField]
+    private Transform cannon;
+
+    [SerializeField]
+    private int defaultDamage;
 
     private Transform cannonGraphic;
+
+    public int level = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        cannonGraphic = cannon.GetChild(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        cannonGraphic = cannon.GetChild(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,6 +63,7 @@ public class TowerBehaviour : MonoBehaviour
         while(true)
         {
             Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation);
+            bullet.GetComponent<BulletBehaviour>().damage = defaultDamage * level;
             yield return new WaitForSeconds(1f);
         }
     }

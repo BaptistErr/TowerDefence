@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public float force;
+    [SerializeField]
+    private float force;
+
+    public int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -15,10 +18,15 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.gameObject.layer != LayerMask.NameToLayer("Friendly"))
+        LayerMask layer = other.transform.gameObject.layer;
+        if (layer != LayerMask.NameToLayer("Friendly"))
         {
-            Debug.Log(other.name);
-            Destroy(transform.gameObject);
+            if (layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Debug.Log(damage);
+                other.GetComponent<Ennemi>().GetDamage(damage);
+            }
+            Destroy(gameObject);
         }
     }
 }

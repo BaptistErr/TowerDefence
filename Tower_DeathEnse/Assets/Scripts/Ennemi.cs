@@ -41,7 +41,7 @@ public class Ennemi : MonoBehaviour
     {
         if (isDead() is false)
         {
-            health -= tourelle.TurretDamage;
+            health -= tourelle.BulletDamage;
         }
     }
 }

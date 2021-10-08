@@ -9,9 +9,11 @@ public class TowerBehaviour : MonoBehaviour
 
     public int BulletDamage;
 
-    public float speed;
-
     public Vector3 target;
+
+    public Transform cannon;
+
+    private Transform cannonGraphic;
 
     // Start is called before the first frame update
     void Start()
@@ -21,31 +23,38 @@ public class TowerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cannonGraphic = cannon.GetChild(0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-        StartCoroutine(Shoot(target));
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            target = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+            cannon.LookAt(target);
+            StartCoroutine(Shoot());
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-        transform.parent.parent.GetChild(0).LookAt(target);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            target = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+            cannon.LookAt(target);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        StopCoroutine(Shoot(target));
+        StopCoroutine(Shoot());
     }
 
-    IEnumerator Shoot(Vector3 target)
+    IEnumerator Shoot()
     {
-        while (true)
+        while(true)
         {
-            GameObject instantiated = Instantiate(bullet, transform.position, transform.rotation);
-            instantiated.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation);
             yield return new WaitForSeconds(1f);
         }
     }

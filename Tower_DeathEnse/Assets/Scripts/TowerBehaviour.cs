@@ -5,17 +5,28 @@ using UnityEngine;
 
 public class TowerBehaviour : MonoBehaviour
 {
-    public GameObject bullet;
+    [SerializeField]
+    private GameObject bullet;
 
     public int BulletDamage;
 
-    public float speed;
+    [SerializeField]
+    private Vector3 target;
 
-    public Vector3 target;
+    [SerializeField]
+    private Transform cannon;
+
+    [SerializeField]
+    private int defaultDamage;
+
+    private Transform cannonGraphic;
+
+    public int level = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        cannonGraphic = cannon.GetChild(0);
     }
 
     // Update is called once per frame
@@ -25,27 +36,34 @@ public class TowerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-        StartCoroutine(Shoot(target));
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            target = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+            cannon.LookAt(target);
+            StartCoroutine(Shoot());
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        target = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-        transform.parent.parent.GetChild(0).LookAt(target);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            target = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+            cannon.LookAt(target);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        StopCoroutine(Shoot(target));
+        StopCoroutine(Shoot());
     }
 
-    IEnumerator Shoot(Vector3 target)
+    IEnumerator Shoot()
     {
-        while (true)
+        while(true)
         {
-            GameObject instantiated = Instantiate(bullet, transform.position, transform.rotation);
-            instantiated.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation);
+            bullet.GetComponent<BulletBehaviour>().damage = defaultDamage * level;
             yield return new WaitForSeconds(1f);
         }
     }

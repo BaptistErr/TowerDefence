@@ -13,8 +13,11 @@ public class SpawnEnnemi : MonoBehaviour
 
     //déclaration des vagues d'énnemis
     public bool StopSpawn = false;
-    private int nombreEnnemi ;
-    private int nombreMax =5;
+    private int nbEnnemiVague ;
+    private int MaxParVague =7;
+    private int NbMaxEnnemi = 14;
+    private int NbGlobalEnnemi = 0;
+    int NbVague = 0;
 
     void Start()
     {
@@ -33,19 +36,22 @@ public class SpawnEnnemi : MonoBehaviour
     //fct -> gère le nbr d'ennemis 
     public void SpawnObjet()
     {
-        if ( nombreEnnemi < nombreMax)
+        NbGlobalEnnemi += 1;
+        if (nbEnnemiVague < MaxParVague)
         {
-            nombreEnnemi += 1;
+            nbEnnemiVague += 1;
             Instantiate(Spawnee, transform.position, transform.rotation);
-            Spawnee.GetComponent<Ennemi>().target = target;
 
         }
         else
         {
-            nombreEnnemi = 0;
-            nombreMax += 2;
-            CancelInvoke("SpawnObjet");
-           
+            if (NbGlobalEnnemi < NbMaxEnnemi)
+            {
+                nbEnnemiVague = 0;
+            }
+            //arreter la coroutine 
+            StopCoroutine(ReguVague(5));
+            CancelInvoke("SpawnObjet");  
         }
     }
 
@@ -54,7 +60,12 @@ public class SpawnEnnemi : MonoBehaviour
     {
         while (true)
         {
-            Wave(2, 2, 2);
+            if(NbVague<=6)
+            {
+                NbVague += 1;
+                Wave(10, 2, 2);
+            }
+            
             yield return new WaitForSeconds(TpsEntreVague);
         }
     }
@@ -64,7 +75,6 @@ public class SpawnEnnemi : MonoBehaviour
     {
         //commencer la coroutine 
         StartCoroutine(ReguVague(5));
-       //arreter la coroutine a changer d'endroit
-        StopCoroutine(ReguVague(5));
+
     }
 }

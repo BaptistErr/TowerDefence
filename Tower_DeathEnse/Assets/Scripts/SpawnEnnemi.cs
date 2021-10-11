@@ -15,11 +15,10 @@ public class SpawnEnnemi : MonoBehaviour
     public bool StopSpawn = false;
     private int nombreEnnemi ;
     private int nombreMax =5;
-    int NbVague = 6;
 
     void Start()
     {
-        agent.SetDestination(target.transform.position);
+        //agent.SetDestination(target.transform.position);
         jeux();
     }
 
@@ -38,6 +37,7 @@ public class SpawnEnnemi : MonoBehaviour
         {
             nombreEnnemi += 1;
             Instantiate(Spawnee, transform.position, transform.rotation);
+            Spawnee.GetComponent<Ennemi>().target = target;
 
         }
         else

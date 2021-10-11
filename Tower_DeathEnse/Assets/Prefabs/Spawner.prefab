@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  Spawnee: {fileID: 0}
-  agent: {fileID: 0}
+  Spawnee: {fileID: 1512702162602476555, guid: 6c3976e952ea01d41a8ab25d94dffb3d, type: 3}
+  agent: {fileID: 1512702162602476565, guid: 6c3976e952ea01d41a8ab25d94dffb3d, type: 3}
   StopSpawn: 0
-  tpsSpawn: 1
-  delaiSpawn: 2

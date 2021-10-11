@@ -10,8 +10,7 @@ public class TowerBehaviour : MonoBehaviour
 
     public int BulletDamage;
 
-    [SerializeField]
-    private Vector3 target;
+    private Collider target;
 
     [SerializeField]
     private Transform cannon;
@@ -23,6 +22,8 @@ public class TowerBehaviour : MonoBehaviour
 
     public int level = 1;
 
+    private List<Collider> targets = new List<Collider>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,30 +33,45 @@ public class TowerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target)
+        {
+            cannon.LookAt(target.transform);
+        }
+        else if (targets.Count > 0)
+        {
+            targets.RemoveAt(0);
+            target = targets[0];
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            target = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
-            cannon.LookAt(target);
-            StartCoroutine(Shoot());
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            target = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
-            cannon.LookAt(target);
+            targets.Add(other);
+            if (!target)
+            {
+                target = targets[0];
+                cannon.LookAt(target.transform);
+                StartCoroutine(Shoot());
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        StopCoroutine(Shoot());
+        targets.Remove(other);
+        if (other == target)
+        {
+            if(targets.Count != 0)
+            {
+                target = targets[0];
+            }
+            else
+            {
+                StopCoroutine(Shoot());
+            }
+        }
     }
 
     IEnumerator Shoot()
@@ -64,6 +80,7 @@ public class TowerBehaviour : MonoBehaviour
         {
             Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation);
             bullet.GetComponent<BulletBehaviour>().damage = defaultDamage * level;
+            bullet.GetComponent<BulletBehaviour>().parentLayer = gameObject.layer;
             yield return new WaitForSeconds(1f);
         }
     }

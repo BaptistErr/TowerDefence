@@ -6,9 +6,23 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    // tourelle pour les placements sur les slots 
     public Object tower;
-   
+
+    // variable pour la victoire / défaite 
+    private int nbEnnemiMax;
+    private int ennemiMort;
     
+    
+    public int getNbEnnemiMax()
+    {
+        return nbEnnemiMax;
+    }
+   
+    public void setNbEnnemiMax(int nbEnnemiMax_)
+    {
+        nbEnnemiMax = nbEnnemiMax_;
+    }
 
     private List<Collider> slotsOccupied = new List<Collider>();
 
@@ -22,6 +36,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       //victoire 
+       if(nbEnnemiMax==ennemiMort)
+        {
+
+        }
+       //defaite 
+       //if(Health <=0)
+
+
         
     }
 

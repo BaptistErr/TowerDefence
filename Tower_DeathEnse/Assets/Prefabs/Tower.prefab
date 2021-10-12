@@ -360,7 +360,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7835249690893709366, guid: 568e6adc129d506438f8fe5686cfcddf, type: 3}
   BulletDamage: 10
-  target: {x: 0, y: 0, z: 0}
   cannon: {fileID: 4555730801175051324}
   defaultDamage: 0
   level: 1

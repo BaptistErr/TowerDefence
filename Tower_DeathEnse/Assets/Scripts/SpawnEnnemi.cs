@@ -11,17 +11,24 @@ public class SpawnEnnemi : MonoBehaviour
     public GameObject Spawnee;
     public NavMeshAgent agent;
 
+    //classe game manager
+    private GameManager _gameManager;
+    
+    
     //déclaration des vagues d'énnemis
     public bool StopSpawn = false;
     private int nbEnnemiVague ;
-    private int MaxParVague =7;
-    private int NbMaxEnnemi = 14;
+    private int MaxParVague =3;
+    
     private int NbGlobalEnnemi = 0;
     int NbVague = 0;
 
     void Start()
     {
-        //agent.SetDestination(target.transform.position);
+        _gameManager = GetComponent<GameManager>();
+        _gameManager.setNbEnnemiMax(14);
+        _gameManager.getNbEnnemiMax();
+
         jeux();
     }
 
@@ -36,6 +43,7 @@ public class SpawnEnnemi : MonoBehaviour
     //fct -> gère le nbr d'ennemis 
     public void SpawnObjet()
     {
+        int nbMaxennemi = _gameManager.getNbEnnemiMax();
         NbGlobalEnnemi += 1;
         if (nbEnnemiVague < MaxParVague)
         {
@@ -45,13 +53,16 @@ public class SpawnEnnemi : MonoBehaviour
         }
         else
         {
-            if (NbGlobalEnnemi < NbMaxEnnemi)
+            
+            if (NbGlobalEnnemi < nbMaxennemi)
             {
                 nbEnnemiVague = 0;
             }
-            //arreter la coroutine 
-            StopCoroutine(ReguVague(5));
-            CancelInvoke("SpawnObjet");  
+            
+                //arreter la coroutine 
+                StopCoroutine(ReguVague(5));
+                CancelInvoke("SpawnObjet");
+            
         }
     }
 

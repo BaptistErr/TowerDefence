@@ -26,6 +26,9 @@ public class CameraController : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            //pour ouvrir le shop des améliorations il faut modifier l'operateur binaire dans le script caméra pour qu'il puisse vérifier si il touche une tourelle ou un slot de tourelle 
+            //1 << layer..............
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position")))
             {
                 manager.PlaceTower(hit);

@@ -41,7 +41,7 @@ public class SpawnEnnemi : MonoBehaviour
         {
             nbEnnemiVague += 1;
             Instantiate(Spawnee, transform.position, transform.rotation);
-
+            Spawnee.GetComponent<Ennemi>().target = target;
         }
         else
         {

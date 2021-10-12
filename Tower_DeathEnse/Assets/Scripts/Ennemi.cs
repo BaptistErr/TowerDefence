@@ -5,13 +5,18 @@ using UnityEngine.AI;
 
 public class Ennemi : MonoBehaviour
 {
+    private GameObject objective;
+
     //caracteristique de l'ennemi
 
     public int health;
     public int damage;
 
+    private Coroutine attack;
+
     [SerializeField]
-    private GameObject bullet;
+    private float rate;
+
     //---------------------------
 
     //mouvement de l'ennemi
@@ -19,17 +24,27 @@ public class Ennemi : MonoBehaviour
     public Transform target;
     public NavMeshAgent agent;
 
+    private Vector3 destination;
+
+    private float dist;
+
     private void Start()
     {
-       
-        agent.SetDestination(target.transform.position);
+        objective = GameObject.Find("Objective");
+
+        destination = target.transform.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-2.5f, 10f));
+        agent.SetDestination(destination);
     }
 
     private void Update()
     {
-        if(transform.position == target.position)
+        dist = agent.remainingDistance;
+        if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
         {
-            StartCoroutine(Shoot());
+            if (attack == null)
+            {
+                attack = StartCoroutine(Attack());
+            }
         }
     }
 
@@ -41,18 +56,19 @@ public class Ennemi : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            if(attack != null)
+            {
+                StopCoroutine(attack);
+            }
             Destroy(gameObject);
         }
     }
 
-    IEnumerator Shoot()
+    IEnumerator Attack()
     {
         while (true)
         {
-            Instantiate(bullet, transform.position, transform.rotation);
-            bullet.GetComponent<BulletBehaviour>().damage = damage;
-            bullet.GetComponent<BulletBehaviour>().parentLayer = gameObject.layer;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(rate);
         }
     }
 }

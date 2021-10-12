@@ -8,11 +8,9 @@ public class GameManager : MonoBehaviour
 {
     // tourelle pour les placements sur les slots 
     public Object tower;
-    CanvasGroup _canvasgroup;
-    
 
     // variable pour la victoire / défaite 
-    public int nbEnnemiMax;
+    private int nbEnnemiMax;
     private int ennemiMort;
     
     
@@ -31,33 +29,23 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-     
-   
-     
     }
 
     // Update is called once per frame
     void Update()
     {
-       //victoire à travailler 
+       //victoire 
        if(nbEnnemiMax==ennemiMort)
         {
 
         }
-       //defaite à travailler 
+       //defaite 
        //if(Health <=0)
-       //toggle()
+
 
         
     }
-    //fct qui fait apparaitre les menus sur les tourelles 
-    /*
-     * 
-     * 
-     * 
-     * 
-     * */
+
     public void PlaceTower(RaycastHit slot)
     {
         if (!slotsOccupied.Contains(slot.collider))
@@ -66,6 +54,4 @@ public class GameManager : MonoBehaviour
             slotsOccupied.Add(slot.collider);
         }
     }
-
-  
 }

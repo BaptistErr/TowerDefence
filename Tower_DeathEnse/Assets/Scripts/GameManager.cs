@@ -7,6 +7,25 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get;private set; }
+    
+    private Collider towerUpgradeMenu;
+
+    [SerializeField]
+    private Object uiUpgrade;
+
+    private GameObject upgradeMenu;
+
+    // tourelle pour les placements sur les slots 
+    public Object tower;
+    
+    // variable pour la victoire / défaite 
+   
+    private int ennemiMort;
+
+    public GameObject victoryUi;
+   
+    private List<Collider> slotsOccupied = new List<Collider>();
+
     private void Awake()
     {
         if (instance == null)
@@ -18,30 +37,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    // tourelle pour les placements sur les slots 
-    public Object tower;
-    
-    // variable pour la victoire / défaite 
-   
-    private int ennemiMort;
-
-    public GameObject victoryUi;
-   
-
-    private List<Collider> slotsOccupied = new List<Collider>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-
-        
     }
 
     public void PlaceTower(RaycastHit slot)
@@ -56,5 +51,26 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("you won");
         victoryUi.SetActive(true);
+    }
+
+    public void UpgradeMenu(RaycastHit tower)
+    {
+        if(!towerUpgradeMenu)
+        {
+            upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position += new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+        }
+        else
+        {
+            Destroy(upgradeMenu);
+            if (towerUpgradeMenu == tower.collider)
+            {
+                towerUpgradeMenu = null;
+            }
+            else
+            {
+                Instantiate(uiUpgrade, tower.collider.gameObject.transform.position += new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+                towerUpgradeMenu = tower.collider;
+            }
+        }
     }
 }

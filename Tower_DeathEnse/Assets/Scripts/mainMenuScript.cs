@@ -19,11 +19,15 @@ public class mainMenuScript : MonoBehaviour
     }
     public void jouer()
     {
-        SceneManager.LoadScene("towerDefense");
+        SceneManager.LoadScene("towerDefense", LoadSceneMode.Single);
     }
     public void quitter()
     {
         Debug.Log("l'application se ferme !!!");
         Application.Quit();
+    }
+    public void BackToM()
+    {
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
 }

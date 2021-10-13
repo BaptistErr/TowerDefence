@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 public class Ennemi : MonoBehaviour
 {
-    private GameObject objective;
+    
 
     //caracteristique de l'ennemi
 
-    public int health;
+    public int health=100;
     public int damage;
+    public GameManager gamemanager;
 
     private Coroutine attack;
 
@@ -34,7 +35,9 @@ public class Ennemi : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        objective = GameObject.Find("Objective");
+        
+        gamemanager = FindObjectOfType<GameManager>();
+        
 
         destination = target.transform.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-2.5f, 10f));
         agent.SetDestination(destination);
@@ -42,7 +45,10 @@ public class Ennemi : MonoBehaviour
 
     private void Update()
     {
+        //attribution des paramètres de l'animator
         anim.SetFloat("Speed", agent.velocity.magnitude);
+        
+
         dist = agent.remainingDistance;
         if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
         {
@@ -61,10 +67,11 @@ public class Ennemi : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
-            if(attack != null)
+            if (attack != null)
             {
                 StopCoroutine(attack);
             }
+            gamemanager.ennemiMort += 1;
             Destroy(gameObject);
         }
     }
@@ -73,6 +80,8 @@ public class Ennemi : MonoBehaviour
     {
         while (true)
         {
+            anim.SetBool("Attacks", true);
+            anim.Play("OnRangeAttacks");
             yield return new WaitForSeconds(rate);
         }
     }

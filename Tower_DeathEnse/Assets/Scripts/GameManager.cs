@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     
     // variable pour la victoire / défaite 
    
-    private int ennemiMort;
+    public int ennemiMort;
 
     public GameObject victoryUi;
    
@@ -36,14 +36,14 @@ public class GameManager : MonoBehaviour
     {
     }
 
-   
+
     void Update()
     {
-       
-
-        
+        if (ennemiMort >= 1)
+        {
+            victoire();
+        }
     }
-
     public void PlaceTower(RaycastHit slot)
     {
         if (!slotsOccupied.Contains(slot.collider))
@@ -54,7 +54,9 @@ public class GameManager : MonoBehaviour
     }
     public void victoire()
     {
-        Debug.Log("you won");
-        victoryUi.SetActive(true);
+        
+            Debug.Log("you won");
+            victoryUi.SetActive(true);
+        
     }
 }

@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1973157712096336075}
   - component: {fileID: 6230519512972368783}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: TowerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

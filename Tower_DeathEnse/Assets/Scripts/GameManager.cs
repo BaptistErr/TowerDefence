@@ -6,14 +6,27 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance { get;private set; }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // tourelle pour les placements sur les slots 
     public Object tower;
     
     // variable pour la victoire / défaite 
    
     private int ennemiMort;
-    
-    
+
+    public GameObject victoryUi;
    
 
     private List<Collider> slotsOccupied = new List<Collider>();
@@ -26,15 +39,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       //victoire 
-       /*if(nbEnnemiMax==ennemiMort)
-        {
-
-        }
-       */
-       //defaite 
-       //if(Health <=0)
-
+       
 
         
     }
@@ -46,5 +51,10 @@ public class GameManager : MonoBehaviour
             Instantiate(tower, slot.transform.position + new Vector3(0f, 3f), Quaternion.identity);
             slotsOccupied.Add(slot.collider);
         }
+    }
+    public void victoire()
+    {
+        Debug.Log("you won");
+        victoryUi.SetActive(true);
     }
 }

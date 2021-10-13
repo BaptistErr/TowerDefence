@@ -27,10 +27,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
        //victoire 
-       if(nbEnnemiMax==ennemiMort)
+       /*if(nbEnnemiMax==ennemiMort)
         {
 
         }
+       */
        //defaite 
        //if(Health <=0)
 

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test1 : MonoBehaviour
+public class toggleVisiblity : MonoBehaviour
 {
-    test2 variable2;
+    CanvasGroup _canvasgroup;
     // Start is called before the first frame update
     void Start()
     {
-        variable2 = GetComponent<test2>();
-        variable2.malware();
+        _canvasgroup = GetComponent<CanvasGroup>();
     }
 
     // Update is called once per frame
@@ -17,8 +16,8 @@ public class test1 : MonoBehaviour
     {
         
     }
-    public void text()
+    public void toggle()
     {
-        Debug.Log("ceci est un test de la classe 1");
+        _canvasgroup.alpha = 0.5f;
     }
 }

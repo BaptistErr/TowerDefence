@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Ennemi : MonoBehaviour
 {
-    private GameObject objective;
+    
 
     //caracteristique de l'ennemi
 
@@ -33,16 +33,20 @@ public class Ennemi : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        objective = GameObject.Find("Objective");
 
+        //anim = GetComponent<Animator>();
+        anim = FindObjectOfType<Animator>();
+        
         destination = target.transform.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-2.5f, 10f));
         agent.SetDestination(destination);
+        
     }
 
     private void Update()
     {
         anim.SetFloat("Speed", agent.velocity.magnitude);
+        
+        
         dist = agent.remainingDistance;
         if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
         {
@@ -65,7 +69,9 @@ public class Ennemi : MonoBehaviour
             {
                 StopCoroutine(attack);
             }
-            Destroy(gameObject);
+            anim.Play("Die");
+            Destroy(gameObject, 1);
+
         }
     }
 
@@ -73,7 +79,12 @@ public class Ennemi : MonoBehaviour
     {
         while (true)
         {
+            anim.SetTrigger("Attacks");
             yield return new WaitForSeconds(rate);
         }
     }
+    
+    
+   
+    
 }

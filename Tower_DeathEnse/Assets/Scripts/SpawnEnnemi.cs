@@ -75,7 +75,7 @@ public class SpawnEnnemi : MonoBehaviour
             if(NbVague<=6)
             {
                 NbVague += 1;
-                Wave(10, 2, 2);
+                Wave(2, 2, 2);
             }
             
             yield return new WaitForSeconds(TpsEntreVague);

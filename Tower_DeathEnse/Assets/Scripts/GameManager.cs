@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    
     public static GameManager instance { get;private set; }
     private void Awake()
     {
@@ -32,18 +33,6 @@ public class GameManager : MonoBehaviour
     private List<Collider> slotsOccupied = new List<Collider>();
 
    
-    void Start()
-    {
-    }
-
-   
-    void Update()
-    {
-       
-
-        
-    }
-
     public void PlaceTower(RaycastHit slot)
     {
         if (!slotsOccupied.Contains(slot.collider))

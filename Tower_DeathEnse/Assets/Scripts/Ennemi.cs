@@ -81,7 +81,7 @@ public class Ennemi : MonoBehaviour
         while (true)
         {
             anim.SetBool("Attacks", true);
-            anim.Play("OnRangeAttacks");
+            anim.Play("Attacks");
             yield return new WaitForSeconds(rate);
         }
     }

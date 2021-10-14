@@ -257,7 +257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 0
-  gamemanager: {fileID: 0}
   rate: 0
   target: {fileID: 0}
   agent: {fileID: 1512702162602476565}

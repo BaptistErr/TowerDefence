@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    
     public static GameManager instance { get;private set; }
     
     private Collider towerUpgradeMenu;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
    
     private List<Collider> slotsOccupied = new List<Collider>();
 
+
     private void Awake()
     {
         if (instance == null)
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     public void PlaceTower(RaycastHit slot)
     {

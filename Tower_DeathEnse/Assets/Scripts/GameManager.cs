@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     
     // variable pour la victoire / défaite 
    
-    private int ennemiMort;
+    public int ennemiMort;
 
     public GameObject victoryUi;
    

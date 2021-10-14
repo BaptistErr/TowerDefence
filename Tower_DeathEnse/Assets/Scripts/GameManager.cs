@@ -8,6 +8,26 @@ public class GameManager : MonoBehaviour
 {
     
     public static GameManager instance { get;private set; }
+    
+    private Collider towerUpgradeMenu;
+
+    [SerializeField]
+    private Object uiUpgrade;
+
+    public GameObject upgradeMenu;
+
+    // tourelle pour les placements sur les slots 
+    public Object tower;
+    
+    // variable pour la victoire / défaite 
+   
+    private int ennemiMort;
+
+    public GameObject victoryUi;
+   
+    private List<Collider> slotsOccupied = new List<Collider>();
+
+
     private void Awake()
     {
         if (instance == null)
@@ -20,19 +40,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // tourelle pour les placements sur les slots 
-    public Object tower;
-    
-    // variable pour la victoire / défaite 
-   
-    private int ennemiMort;
 
-    public GameObject victoryUi;
-   
 
-    private List<Collider> slotsOccupied = new List<Collider>();
-
-   
     public void PlaceTower(RaycastHit slot)
     {
         if (!slotsOccupied.Contains(slot.collider))
@@ -45,5 +54,27 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("you won");
         victoryUi.SetActive(true);
+    }
+
+    public void UpgradeMenu(RaycastHit tower)
+    {
+        if(!towerUpgradeMenu)
+        {
+            upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position + new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+            towerUpgradeMenu = tower.collider;
+        }
+        else
+        {
+            Destroy(upgradeMenu);
+            if (towerUpgradeMenu == tower.collider)
+            {
+                towerUpgradeMenu = null;
+            }
+            else
+            {
+                upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position + new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+                towerUpgradeMenu = tower.collider;
+            }
+        }
     }
 }

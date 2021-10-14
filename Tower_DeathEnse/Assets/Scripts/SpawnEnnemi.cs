@@ -25,8 +25,6 @@ public class SpawnEnnemi : MonoBehaviour
 
     void Start()
     {
-        GameManager _gameManager = new GameManager();
-        // _gameManager = GetComponent<GameManager>();
         nbMaxennemi = 14;
        
 

@@ -22,5 +22,9 @@ public class ObjectiveBehaviour : MonoBehaviour
     public void GetDamage(int damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

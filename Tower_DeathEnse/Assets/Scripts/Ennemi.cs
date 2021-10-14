@@ -10,6 +10,9 @@ public class Ennemi : MonoBehaviour
     //caracteristique de l'ennemi
 
     public int health;
+
+    private int defaultHealth;
+
     public int damage;
 
     private Coroutine attack;
@@ -34,6 +37,7 @@ public class Ennemi : MonoBehaviour
     private void Start()
     {
 
+
         //anim = GetComponent<Animator>();
         anim = FindObjectOfType<Animator>();
         
@@ -49,11 +53,16 @@ public class Ennemi : MonoBehaviour
         
         dist = agent.remainingDistance;
         if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
+
+        defaultHealth = health;
+        anim = GetComponent<Animator>();
+        objective = GameObject.Find("Objective");
+
+        if (target)
+
         {
-            if (attack == null)
-            {
-                attack = StartCoroutine(Attack());
-            }
+            destination = target.transform.position + new Vector3(Random.insideUnitSphere.x * 5, 0, Random.insideUnitSphere.z * 1.5f);
+            agent.SetDestination(destination);
         }
     }
 
@@ -75,11 +84,32 @@ public class Ennemi : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && agent.remainingDistance < 3)
+        {
+            attack = StartCoroutine(Attack());
+        }
+    }
+
     IEnumerator Attack()
     {
         while (true)
         {
+
             anim.SetTrigger("Attacks");
+
+            //anim.SetBool("Attacks", true);
+            //anim.Play("Attacks");
+            if (target)
+            {
+                target.parent.GetComponent<ObjectiveBehaviour>().GetDamage(damage);
+            }
+            else
+            {
+                StopCoroutine(attack);
+            }
+
             yield return new WaitForSeconds(rate);
         }
     }

@@ -8,6 +8,12 @@ public class CameraController : MonoBehaviour
 
     public GameManager manager;
 
+    [SerializeField]
+    private float minHeight;
+
+    [SerializeField]
+    private float maxHeight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +26,17 @@ public class CameraController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        transform.position += new Vector3(horizontal, 0, vertical) * Time.deltaTime * speed;
+        float up = Input.GetAxis("Up");
+        transform.position += new Vector3(horizontal, up, vertical) * Time.deltaTime * speed;
+
+        if (transform.position.y <= minHeight)
+        {
+            transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
+        }
+        else if (transform.position.y >= maxHeight)
+        {
+            transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
+        }
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -29,9 +45,20 @@ public class CameraController : MonoBehaviour
             //pour ouvrir le shop des améliorations il faut modifier l'operateur binaire dans le script caméra pour qu'il puisse vérifier si il touche une tourelle ou un slot de tourelle 
             //1 << layer..............
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position")))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, (1 << LayerMask.NameToLayer("Position") | 1 << LayerMask.NameToLayer("Upgrade"))))
             {
-                manager.PlaceTower(hit);
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Position"))
+                {
+                    manager.PlaceTower(hit);
+                }
+                else
+                {
+                    manager.UpgradeMenu(hit);
+                }
+            }
+            else if (manager.upgradeMenu)
+            {
+                Destroy(manager.upgradeMenu);
             }
         }
     }

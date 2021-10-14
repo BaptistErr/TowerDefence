@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Object uiUpgrade;
 
-    private GameObject upgradeMenu;
+    public GameObject upgradeMenu;
 
     // tourelle pour les placements sur les slots 
     public Object tower;
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
     {
         if(!towerUpgradeMenu)
         {
-            upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position += new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+            upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position + new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+            towerUpgradeMenu = tower.collider;
         }
         else
         {
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Instantiate(uiUpgrade, tower.collider.gameObject.transform.position += new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+                upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position + new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
                 towerUpgradeMenu = tower.collider;
             }
         }

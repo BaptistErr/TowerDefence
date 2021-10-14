@@ -47,6 +47,7 @@ public class CameraController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, (1 << LayerMask.NameToLayer("Position") | 1 << LayerMask.NameToLayer("Upgrade"))))
             {
+                Debug.Log(hit.transform.name);
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Position"))
                 {
                     manager.PlaceTower(hit);
@@ -55,6 +56,10 @@ public class CameraController : MonoBehaviour
                 {
                     manager.UpgradeMenu(hit);
                 }
+            }
+            else if (manager.upgradeMenu)
+            {
+                Destroy(manager.upgradeMenu);
             }
         }
     }

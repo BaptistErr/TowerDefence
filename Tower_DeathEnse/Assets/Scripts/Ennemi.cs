@@ -73,11 +73,8 @@ public class Ennemi : MonoBehaviour
     {
         while (true)
         {
-<<<<<<< HEAD
             anim.SetBool("Attacks", true);
             anim.Play("Attacks");
-=======
->>>>>>> parent of d541600 (animation attaque)
             yield return new WaitForSeconds(rate);
         }
     }

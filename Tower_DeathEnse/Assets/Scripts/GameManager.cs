@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
    
     private List<Collider> slotsOccupied = new List<Collider>();
 
-<<<<<<< HEAD
     private void Awake()
     {
         if (instance == null)
@@ -38,19 +37,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-=======
-   
-    void Start()
-    {
-    }
-
-   
-    void Update()
-    {
-       
-
-        
->>>>>>> parent of d541600 (animation attaque)
     }
 
     public void PlaceTower(RaycastHit slot)
@@ -65,7 +51,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("you won");
         victoryUi.SetActive(true);
-<<<<<<< HEAD
     }
 
     public void UpgradeMenu(RaycastHit tower)
@@ -87,7 +72,5 @@ public class GameManager : MonoBehaviour
                 towerUpgradeMenu = tower.collider;
             }
         }
-=======
->>>>>>> parent of d541600 (animation attaque)
     }
 }

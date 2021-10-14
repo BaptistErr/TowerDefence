@@ -2586,6 +2586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   manager: {fileID: 1321361313}
+  minHeight: 10
+  maxHeight: 90
 --- !u!1001 &1067674041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3153,6 +3155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d743c00c9a862124fab277b054e360f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiUpgrade: {fileID: 3988026503476812249, guid: 2d6c78e2de2fe70419fd110969c1e2f0, type: 3}
   tower: {fileID: 8575385075007725862, guid: cd21d8e3a3875184daf96be296f76614, type: 3}
   victoryUi: {fileID: 343680188}
 --- !u!1 &1327069653

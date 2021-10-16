@@ -46,17 +46,6 @@ public class Ennemi : MonoBehaviour
         agent.SetDestination(destination);
     }
 
-    private void Update()
-    {
-        anim.SetFloat("Speed", agent.velocity.magnitude);
-        dist = agent.remainingDistance;
-        if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
-
-        
-        }
-        }
-    }
-
     //-----------------------------
 
     //methodes de l'ennemi

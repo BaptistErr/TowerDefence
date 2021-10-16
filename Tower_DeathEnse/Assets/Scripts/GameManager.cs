@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     public void victoire()
     {
         Debug.Log("you won");
-        victoryUi.SetActive(true);
+        //victoryUi.
     }
 
     public void UpgradeMenu(RaycastHit tower)
@@ -76,5 +76,14 @@ public class GameManager : MonoBehaviour
                 towerUpgradeMenu = tower.collider;
             }
         }
+    }
+
+    public void UpgradeButton()
+    {
+
+    }
+    public void SellButton()
+    {
+
     }
 }

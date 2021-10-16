@@ -41,9 +41,8 @@ public class Ennemi : MonoBehaviour
         //anim = GetComponent<Animator>();
         anim = FindObjectOfType<Animator>();
         
-        destination = target.transform.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-2.5f, 10f));
+        destination = target.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
         agent.SetDestination(destination);
-        
     }
 
     private void Update()
@@ -56,14 +55,6 @@ public class Ennemi : MonoBehaviour
 
         defaultHealth = health;
         anim = GetComponent<Animator>();
-        objective = GameObject.Find("Objective");
-
-        if (target)
-
-        {
-            destination = target.transform.position + new Vector3(Random.insideUnitSphere.x * 5, 0, Random.insideUnitSphere.z * 1.5f);
-            agent.SetDestination(destination);
-        }
     }
 
     //-----------------------------

@@ -258,6 +258,7 @@ MonoBehaviour:
   health: 100
   damage: 10
   rate: 1
+  dead: 0
   target: {fileID: 0}
   agent: {fileID: 1512702162602476565}
 --- !u!195 &1512702162602476565

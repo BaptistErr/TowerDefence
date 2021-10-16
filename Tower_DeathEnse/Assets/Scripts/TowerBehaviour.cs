@@ -8,8 +8,6 @@ public class TowerBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject bullet;
 
-    public int BulletDamage;
-
     private Collider target;
 
     [SerializeField]

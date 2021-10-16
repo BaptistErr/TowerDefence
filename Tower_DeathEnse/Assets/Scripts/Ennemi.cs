@@ -20,6 +20,8 @@ public class Ennemi : MonoBehaviour
     [SerializeField]
     private float rate;
 
+    public bool dead = false;
+
     //---------------------------
 
     //mouvement de l'ennemi
@@ -59,8 +61,13 @@ public class Ennemi : MonoBehaviour
             {
                 StopCoroutine(attack);
             }
-            anim.SetTrigger("Death");
-            Destroy(gameObject, 1);
+            if (!dead)
+            {
+                agent.isStopped = true;
+                anim.SetTrigger("Death");
+                dead = true;
+            }
+            Destroy(gameObject, 2);
 
         }
     }

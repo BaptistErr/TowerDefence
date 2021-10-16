@@ -42,9 +42,8 @@ public class Ennemi : MonoBehaviour
         anim = FindObjectOfType<Animator>();
         objective = GameObject.Find("Objective");
 
-        destination = target.transform.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-2.5f, 10f));
+        destination = target.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
         agent.SetDestination(destination);
-        
     }
 
     private void Update()
@@ -53,14 +52,8 @@ public class Ennemi : MonoBehaviour
         dist = agent.remainingDistance;
         if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
 
-        defaultHealth = health;
-       
-
-        if (target)
-
-        {
-            destination = target.transform.position + new Vector3(Random.insideUnitSphere.x * 5, 0, Random.insideUnitSphere.z * 1.5f);
-            agent.SetDestination(destination);
+        
+        }
         }
     }
 

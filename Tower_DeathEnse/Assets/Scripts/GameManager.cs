@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     // tourelle pour les placements sur les slots 
     public Object tower;
     
+    
     // variable pour la victoire / défaite 
    
     private int ennemiMort;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+       
     }
 
 
@@ -78,12 +80,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpgradeButton()
+   /* public void UpgradeButton(GameObject upgradetower)
     {
-
+        Debug.Log("amelioration");
+        RaycastHit
+        Instantiate(upgradetower,cible.transform.position + new Vector3(0f, 3f), Quaternion.identity);
+            
+        
     }
     public void SellButton()
     {
-
+        Debug.Log("Vente");
     }
+   */
 }

@@ -24,7 +24,7 @@ public class Ennemi : MonoBehaviour
 
     //mouvement de l'ennemi
 
-    public Transform target;
+    public Transform target=null;
     public NavMeshAgent agent;
 
     private Vector3 destination;
@@ -42,7 +42,8 @@ public class Ennemi : MonoBehaviour
         anim = FindObjectOfType<Animator>();
         objective = GameObject.Find("Objective");
 
-        destination = target.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
+        destination = target.transform.position;
+        destination += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
         agent.SetDestination(destination);
     }
 

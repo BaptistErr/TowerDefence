@@ -42,7 +42,8 @@ public class Ennemi : MonoBehaviour
         anim = FindObjectOfType<Animator>();
         objective = GameObject.Find("Objective");
 
-        destination = target.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
+        destination = target.transform.position;
+        destination += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
         agent.SetDestination(destination);
     }
 
@@ -51,10 +52,13 @@ public class Ennemi : MonoBehaviour
         anim.SetFloat("Speed", agent.velocity.magnitude);
         dist = agent.remainingDistance;
         if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
+        {
+
+        }
 
         
-        }
-        }
+        
+        
     }
 
     //-----------------------------

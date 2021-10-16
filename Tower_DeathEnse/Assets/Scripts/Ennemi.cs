@@ -24,7 +24,7 @@ public class Ennemi : MonoBehaviour
 
     //mouvement de l'ennemi
 
-    public Transform target;
+    public Transform target=null;
     public NavMeshAgent agent;
 
     private Vector3 destination;

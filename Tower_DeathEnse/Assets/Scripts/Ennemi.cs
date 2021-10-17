@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Ennemi : MonoBehaviour
 {
     GameObject objective;
-
+    private Coroutine attack;
     //caracteristique de l'ennemi
 
     public int health;
@@ -14,8 +14,8 @@ public class Ennemi : MonoBehaviour
     private int defaultHealth;
 
     public int damage;
+    
 
-    private Coroutine attack;
 
     [SerializeField]
     private float rate;
@@ -26,7 +26,7 @@ public class Ennemi : MonoBehaviour
 
     //mouvement de l'ennemi
 
-    public Transform target=null;
+    public Transform target;
     public NavMeshAgent agent;
 
     private Vector3 destination;
@@ -38,17 +38,20 @@ public class Ennemi : MonoBehaviour
 
     private void Start()
     {
-
+       
 
         
         anim = FindObjectOfType<Animator>();
         objective = GameObject.Find("Objective");
-
+        target = objective?.transform;
         destination = target.transform.position;
         destination += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
         agent.SetDestination(destination);
     }
-
+    private void Update()
+    {
+        anim.SetFloat("Speed", agent.velocity.magnitude); 
+    }
     //-----------------------------
 
     //methodes de l'ennemi
@@ -64,46 +67,44 @@ public class Ennemi : MonoBehaviour
             if (!dead)
             {
                 agent.isStopped = true;
-                anim.SetTrigger("Death");
+                anim?.SetTrigger("Death");
                 dead = true;
             }
+            
             Destroy(gameObject, 2);
-
+           
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && agent.remainingDistance < 3)
-        {
-            attack = StartCoroutine(Attack());
-        }
-    }
+   
 
-    IEnumerator Attack()
+    public IEnumerator Attack(float waittime)
     {
         while (true)
         {
-
-            
-
-            anim.SetBool("Attacks", true);
-           
+            anim?.SetBool("Attacks", true);
             if (target)
             {
-                target.parent.GetComponent<ObjectiveBehaviour>().GetDamage(damage);
+                target?.parent?.GetComponent<ObjectiveBehaviour>()?.GetDamage(damage);
             }
             else
             {
                 StopCoroutine(attack);
-                anim.SetBool("Attacks", false);
+                anim?.SetBool("Attacks", false);
             }
 
             yield return new WaitForSeconds(rate);
         }
     }
-    
-    
-   
-    
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && agent.remainingDistance < 3)
+        {
+            StartCoroutine(Attack(rate));
+        }
+    }
+
+
+
 }

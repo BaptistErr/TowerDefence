@@ -1,9 +1,6 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.AI;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,12 +14,12 @@ public class GameManager : MonoBehaviour
     private Collider towerUpgradeMenu;
 
     [SerializeField]
-    private Object uiUpgrade;
+    private UnityEngine.Object uiUpgrade;
 
     public GameObject upgradeMenu;
 
     // tourelle pour les placements sur les slots 
-    public Object tower;
+    public UnityEngine.Object tower;
     
     
     // variable pour la victoire / défaite 
@@ -52,13 +49,14 @@ public class GameManager : MonoBehaviour
         canvasGroupV = canvasGrpVictoire.GetComponent<CanvasGroup>();
         canvasGroupD = canvasGrpDefaite.GetComponent<CanvasGroup>();
         vieobjectif = objective.health;
-        nbMaxEnnemi = 10;
+
+        nbMaxEnnemi = 10; 
         money = 100;
         ennemiMort = 0;
     }
     private void FixedUpdate()
     {
-        if ( ennemiMort == Math.Floor(nbMaxEnnemi/3f))
+        if ( ennemiMort == nbMaxEnnemi)
         {
             victoire();
         }

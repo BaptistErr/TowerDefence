@@ -11,25 +11,46 @@ public class SpawnEnnemi : MonoBehaviour
     public GameObject Spawnee;
     public NavMeshAgent agent;
 
-    //classe game manager
+    //object gameManager
     GameManager gameManager;
 
 
-    //déclaration des vagues d'énnemis
-    public bool StopSpawn = false;
-    private int nbEnnemiVague ;
-    private int MaxParVague =3;
-
-    private int NbGlobalEnnemi = 0;
-    int NbVague = 0;
+    //déclaration des vagues d'énnemis    
+    private int MaxParVague =5;
+    private int nbvague;
+    //compteurs d'ennemi
+    private int NbGlobalEnnemi = 0; // global
+    private int nbEnnemiVague; // par vague
+    int compteurVague = 0; 
 
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        nbvague = gameManager.nbMaxEnnemi / MaxParVague; 
         jeux();
     }
+    public void jeux()
+    {
+        //commencer les vagues avec 5 secondes entre chaque vagues
+        StartCoroutine(ReguVague(5));
 
+        // fct qui appelle reguVague qui appelle ensuite wave qui finit par appeler spawnObject 
+    }
 
+    //fct -> réguler les vagues 
+    public IEnumerator ReguVague(float TpsEntreVague)
+    {
+        while (true)
+        {
+            if (compteurVague <= nbvague)
+            {
+                compteurVague += 1;
+                Wave(10, 0, 1);
+            }
+
+            yield return new WaitForSeconds(TpsEntreVague);
+        }
+    }
     //fct -> lancer les vagues d'ennemis 
     public void Wave(int vitesseennemi, int TpsSpawn, int DelaySpawn)
 
@@ -37,7 +58,8 @@ public class SpawnEnnemi : MonoBehaviour
         agent.speed = vitesseennemi;
         InvokeRepeating("SpawnObjet", TpsSpawn, DelaySpawn);
     }
-    //fct -> gère le nbr d'ennemis 
+
+    //fct -> gère le nbr d'ennemis global
     public void SpawnObjet()
     {
         
@@ -63,26 +85,7 @@ public class SpawnEnnemi : MonoBehaviour
         }
     }
 
-    //fct -> réguler les vagues 
-    public IEnumerator ReguVague(float TpsEntreVague)
-    {
-        while (true)
-        {
-            if(NbVague<=6)
-            {
-                NbVague += 1;
-                Wave(10, 2, 2);
-            }
-            
-            yield return new WaitForSeconds(TpsEntreVague);
-        }
-    }
 
     
-    public void jeux()
-    {
-        //commencer la coroutine 
-        StartCoroutine(ReguVague(5));
-
-    }
+    
 }

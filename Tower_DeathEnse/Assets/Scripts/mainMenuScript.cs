@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class mainMenuScript : MonoBehaviour
 {
-    AudioSource sondDeBouton;
+    public AudioSource sondDeBouton;
     
     // Start is called before the first frame update
     void Start()
@@ -20,8 +20,6 @@ public class mainMenuScript : MonoBehaviour
     }
     public void jouer()
     {
-        sondDeBouton.Play();
-  
         SceneManager.LoadScene("towerDefense", LoadSceneMode.Single);
     }
     public void quitter()

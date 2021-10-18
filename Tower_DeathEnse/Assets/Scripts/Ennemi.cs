@@ -67,11 +67,12 @@ public class Ennemi : MonoBehaviour
             }
             if (!dead)
             {
+                gameManager.ennemiMort += 1;
+                gameManager.money += 10;
                 agent.isStopped = true;
                 anim?.SetTrigger("Death");
                 dead = true;
             }
-            gameManager.ennemiMort += 1;
             Destroy(gameObject, 2);
            
         }

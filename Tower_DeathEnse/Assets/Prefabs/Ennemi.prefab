@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d04cc48c33cb5a43b41b2e7ad933ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1500326529247986557, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
   health: 100
   damage: 10
   rate: 1

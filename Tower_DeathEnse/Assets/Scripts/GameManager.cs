@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public int money;
+
     public static GameManager instance { get;private set; }
 
     SpawnEnnemi spawnEnnemi;
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     
     // variable pour la victoire / défaite 
    
-    public int ennemiMort=0;
+    public int ennemiMort;
     public CanvasGroup canvasGroupV;
     public CanvasGroup canvasGroupD;
     public GameObject canvasGrpVictoire;
@@ -51,12 +53,12 @@ public class GameManager : MonoBehaviour
         canvasGroupD = canvasGrpDefaite.GetComponent<CanvasGroup>();
         vieobjectif = objective.health;
         nbMaxEnnemi = 10;
-
-
+        money = 100;
+        ennemiMort = 0;
     }
     private void FixedUpdate()
     {
-        if ( ennemiMort == nbMaxEnnemi)
+        if ( ennemiMort == Math.Floor(nbMaxEnnemi/3f))
         {
             victoire();
         }
@@ -79,10 +81,11 @@ public class GameManager : MonoBehaviour
 
     public void PlaceTower(RaycastHit slot)
     {
-        if (!slotsOccupied.Contains(slot.collider))
+        if (!slotsOccupied.Contains(slot.collider) && money >= 50)
         {
-            Instantiate(tower, slot.transform.position + new Vector3(0f, 3f), Quaternion.identity);
+            Instantiate(tower, slot.transform.position, Quaternion.identity);
             slotsOccupied.Add(slot.collider);
+            money -= 50;
         }
     }
     

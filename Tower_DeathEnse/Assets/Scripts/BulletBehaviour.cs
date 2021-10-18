@@ -33,6 +33,7 @@ public class BulletBehaviour : MonoBehaviour
             }
 
             impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, Vector3.zero)) as GameObject;
+            Destroy(impactParticle, 3);
             transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();
             transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Stop();

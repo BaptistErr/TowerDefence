@@ -12,22 +12,20 @@ public class SpawnEnnemi : MonoBehaviour
     public NavMeshAgent agent;
 
     //classe game manager
-    
+    GameManager gameManager;
 
 
     //déclaration des vagues d'énnemis
     public bool StopSpawn = false;
     private int nbEnnemiVague ;
     private int MaxParVague =3;
-    private int nbMaxennemi;
+
     private int NbGlobalEnnemi = 0;
     int NbVague = 0;
 
     void Start()
     {
-        nbMaxennemi = 14;
-       
-
+        gameManager = FindObjectOfType<GameManager>();
         jeux();
     }
 
@@ -53,7 +51,7 @@ public class SpawnEnnemi : MonoBehaviour
         else
         {
             
-            if (NbGlobalEnnemi < nbMaxennemi)
+            if (NbGlobalEnnemi < gameManager.nbMaxEnnemi)
             {
                 nbEnnemiVague = 0;
             }

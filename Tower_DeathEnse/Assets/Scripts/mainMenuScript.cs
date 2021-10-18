@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class mainMenuScript : MonoBehaviour
 {
+    
     public AudioSource sondDeBouton;
     
     // Start is called before the first frame update
@@ -11,12 +12,6 @@ public class mainMenuScript : MonoBehaviour
     {
         sondDeBouton = GetComponent<AudioSource>();
        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
     public void jouer()
     {
@@ -27,8 +22,5 @@ public class mainMenuScript : MonoBehaviour
         Debug.Log("l'application se ferme !!!");
         Application.Quit();
     }
-    public void BackToM()
-    {
-        SceneManager.LoadScene(0,LoadSceneMode.Single);
-    }
+    
 }

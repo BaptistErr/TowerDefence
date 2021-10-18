@@ -16,7 +16,7 @@ public class SpawnEnnemi : MonoBehaviour
 
 
     //déclaration des vagues d'énnemis    
-    private int MaxParVague =5;
+    private int MaxParVague =2;
     private int nbvague;
     //compteurs d'ennemi
     private int NbGlobalEnnemi = 0; // global

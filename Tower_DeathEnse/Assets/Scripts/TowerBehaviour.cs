@@ -92,7 +92,6 @@ public class TowerBehaviour : MonoBehaviour
         {
             Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation);
             bullet.GetComponent<BulletBehaviour>().damage = defaultDamage * level;
-            bullet.GetComponent<BulletBehaviour>().parentLayer = gameObject.layer;
             yield return new WaitForSeconds(1f);
         }
     }

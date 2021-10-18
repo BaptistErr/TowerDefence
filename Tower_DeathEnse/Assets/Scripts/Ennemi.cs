@@ -50,7 +50,12 @@ public class Ennemi : MonoBehaviour
     }
     private void Update()
     {
-        anim.SetFloat("Speed", agent.velocity.magnitude); 
+        anim.SetFloat("Speed", agent.velocity.magnitude);
+        if (!objective)
+        {
+            StopCoroutine(attack);
+            anim?.SetBool("Attacks", false);
+        }
     }
     //-----------------------------
 
@@ -63,6 +68,7 @@ public class Ennemi : MonoBehaviour
             if(attack != null)
             {
                 StopCoroutine(attack);
+                anim?.SetBool("Attacks", false);
             }
             if (!dead)
             {
@@ -78,22 +84,22 @@ public class Ennemi : MonoBehaviour
 
    
 
-    public IEnumerator Attack(float waittime)
+    public IEnumerator Attack(float waitTime)
     {
         while (true)
         {
             anim?.SetBool("Attacks", true);
-            if (target)
+            if (objective)
             {
                 target?.parent?.GetComponent<ObjectiveBehaviour>()?.GetDamage(damage);
             }
             else
             {
-                StopCoroutine(attack);
                 anim?.SetBool("Attacks", false);
+                StopCoroutine(attack);
             }
 
-            yield return new WaitForSeconds(rate);
+            yield return new WaitForSeconds(waitTime);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -101,7 +107,8 @@ public class Ennemi : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && agent.remainingDistance < 3)
         {
-            StartCoroutine(Attack(rate));
+            agent.isStopped = true;
+            attack = StartCoroutine(Attack(rate));
         }
     }
 

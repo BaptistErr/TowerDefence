@@ -10,8 +10,6 @@ public class BulletBehaviour : MonoBehaviour
 
     public int damage;
 
-    public int parentLayer;
-
     private float initializationTime;
 
     // Start is called before the first frame update
@@ -24,16 +22,9 @@ public class BulletBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         LayerMask layer = other.transform.gameObject.layer;
-        if (layer.value != parentLayer && other.GetComponent<BulletBehaviour>() == null)
+        if (layer != LayerMask.NameToLayer("Tower") && other.GetComponent<BulletBehaviour>() == null)
         {
-            if (layer == LayerMask.NameToLayer("Enemy"))
-            {
-                other.GetComponent<Ennemi>().GetDamage(damage);
-            }
-            else if (layer == LayerMask.NameToLayer("Objective"))
-            {
-                other.GetComponentInParent<ObjectiveBehaviour>().GetDamage(damage);
-            }
+            other.GetComponent<Ennemi>().GetDamage(damage);
             Destroy(gameObject);
         }
     }

@@ -162,11 +162,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1512702162602476566}
   - component: {fileID: 1512702162602476552}
-  - component: {fileID: 1512702162602476553}
   - component: {fileID: 668635303538939529}
   - component: {fileID: 1512702162602476565}
   - component: {fileID: 6514277533498737170}
   - component: {fileID: 3729504262835410731}
+  - component: {fileID: 5320622284124169302}
   m_Layer: 6
   m_Name: Ennemi
   m_TagString: Untagged
@@ -230,19 +230,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1512702162602476553
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1512702162602476555}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &668635303538939529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d04cc48c33cb5a43b41b2e7ad933ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 1500326529247986557, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
   health: 100
   damage: 10
   rate: 1
@@ -318,6 +306,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &5320622284124169302
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512702162602476555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!1 &2397229225155946014
 GameObject:
   m_ObjectHideFlags: 0

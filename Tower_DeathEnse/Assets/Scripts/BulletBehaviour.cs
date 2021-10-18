@@ -22,9 +22,12 @@ public class BulletBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         LayerMask layer = other.transform.gameObject.layer;
-        if (layer != LayerMask.NameToLayer("Tower") && other.GetComponent<BulletBehaviour>() == null)
+        if (layer != LayerMask.NameToLayer("Tower") && layer != LayerMask.NameToLayer("Upgrade") && layer != LayerMask.NameToLayer("Objective") && other.GetComponent<BulletBehaviour>() == null)
         {
-            other.GetComponent<Ennemi>().GetDamage(damage);
+            if(layer == LayerMask.NameToLayer("Enemy"))
+            {
+                other.GetComponent<Ennemi>().GetDamage(damage);
+            }
             Destroy(gameObject);
         }
     }

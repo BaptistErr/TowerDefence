@@ -36,7 +36,8 @@ public class TowerBehaviour : MonoBehaviour
     {
         if (target)
         {
-            cannon.LookAt(target.transform);
+            cannon.LookAt(new Vector3(target.transform.position.x, cannon.transform.position.y, target.transform.position.z));
+            cannonGraphic.LookAt(target.transform);
         }
         else if (targets.Count != 0)
         {
@@ -90,7 +91,7 @@ public class TowerBehaviour : MonoBehaviour
     {
         while(true)
         {
-            Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation);
+            Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation * Quaternion.Euler(90, 0, 0));
             bullet.GetComponent<BulletBehaviour>().damage = defaultDamage * level;
             yield return new WaitForSeconds(1f);
         }

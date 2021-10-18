@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d743c00c9a862124fab277b054e360f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 100
   uiUpgrade: {fileID: 3988026503476812249, guid: 2d6c78e2de2fe70419fd110969c1e2f0, type: 3}
   upgradeMenu: {fileID: 0}
   tower: {fileID: 8575385075007725862, guid: cd21d8e3a3875184daf96be296f76614, type: 3}

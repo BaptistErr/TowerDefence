@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public int money = 100;
     public static GameManager instance { get;private set; }
     
     private Collider towerUpgradeMenu;
@@ -46,10 +46,11 @@ public class GameManager : MonoBehaviour
 
     public void PlaceTower(RaycastHit slot)
     {
-        if (!slotsOccupied.Contains(slot.collider))
+        if (!slotsOccupied.Contains(slot.collider) && money >= 50)
         {
-            Instantiate(tower, slot.transform.position + new Vector3(0f, 3f), Quaternion.identity);
+            Instantiate(tower, slot.transform.position, Quaternion.identity);
             slotsOccupied.Add(slot.collider);
+            money -= 50;
         }
     }
     public void victoire()
@@ -87,10 +88,10 @@ public class GameManager : MonoBehaviour
         Instantiate(upgradetower,cible.transform.position + new Vector3(0f, 3f), Quaternion.identity);
             
         
-    }
+    }*/
+
     public void SellButton()
     {
         Debug.Log("Vente");
     }
-   */
 }

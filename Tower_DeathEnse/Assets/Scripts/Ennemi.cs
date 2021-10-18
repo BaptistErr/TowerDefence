@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Ennemi : MonoBehaviour
 {
+    public GameManager manager;
+
     GameObject objective;
     private Coroutine attack;
     //caracteristique de l'ennemi
@@ -74,11 +76,11 @@ public class Ennemi : MonoBehaviour
             {
                 agent.isStopped = true;
                 anim?.SetTrigger("Death");
+                manager.money += 10;
                 dead = true;
             }
-            
+
             Destroy(gameObject, 2);
-           
         }
     }
 

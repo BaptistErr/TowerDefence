@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
-    public int money = 100;
+    public int money;
     public static GameManager instance { get;private set; }
     
     private Collider towerUpgradeMenu;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
+        money = 100;
     }
 
 

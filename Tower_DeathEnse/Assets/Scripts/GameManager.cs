@@ -6,8 +6,11 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
-    public int money;
+    
     public static GameManager instance { get;private set; }
+
+    SpawnEnnemi spawnEnnemi;
+    ObjectiveBehaviour objective;
     
     private Collider towerUpgradeMenu;
 
@@ -22,12 +25,15 @@ public class GameManager : MonoBehaviour
     
     // variable pour la victoire / défaite 
    
-    private int ennemiMort;
-
-    public GameObject victoryUi;
+    public int ennemiMort=0;
+    public CanvasGroup canvasGroupV;
+    public CanvasGroup canvasGroupD;
+    public GameObject canvasGrpVictoire;
+    public GameObject canvasGrpDefaite;
    
     private List<Collider> slotsOccupied = new List<Collider>();
-
+    public int vieobjectif ;
+    public int nbMaxEnnemi;
 
     private void Awake()
     {
@@ -40,24 +46,46 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        money = 100;
-    }
+        objective = FindObjectOfType<ObjectiveBehaviour>();
+        canvasGroupV = canvasGrpVictoire.GetComponent<CanvasGroup>();
+        canvasGroupD = canvasGrpDefaite.GetComponent<CanvasGroup>();
+        vieobjectif = objective.health;
+        nbMaxEnnemi = 10;
 
+
+    }
+    private void FixedUpdate()
+    {
+        if ( ennemiMort == nbMaxEnnemi)
+        {
+            victoire();
+        }
+        if (vieobjectif <= 0 )
+        {
+            defaite();
+        }
+
+    }
+    private void victoire()
+    {
+        Debug.Log("c'est une victoire !");
+        canvasGroupV.alpha = 1;
+    }
+    private void defaite()
+    {
+        Debug.Log("c'est une Défaite");
+        canvasGroupD.alpha = 1;
+    }
 
     public void PlaceTower(RaycastHit slot)
     {
-        if (!slotsOccupied.Contains(slot.collider) && money >= 50)
+        if (!slotsOccupied.Contains(slot.collider))
         {
-            Instantiate(tower, slot.transform.position, Quaternion.identity);
+            Instantiate(tower, slot.transform.position + new Vector3(0f, 3f), Quaternion.identity);
             slotsOccupied.Add(slot.collider);
-            money -= 50;
         }
     }
-    public void victoire()
-    {
-        Debug.Log("you won");
-        //victoryUi.
-    }
+    
 
     public void UpgradeMenu(RaycastHit tower)
     {
@@ -88,10 +116,10 @@ public class GameManager : MonoBehaviour
         Instantiate(upgradetower,cible.transform.position + new Vector3(0f, 3f), Quaternion.identity);
             
         
-    }*/
-
+    }
     public void SellButton()
     {
         Debug.Log("Vente");
     }
+   */
 }

@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class Ennemi : MonoBehaviour
 {
-    public GameManager manager;
-
+    GameManager gameManager;
     GameObject objective;
     private Coroutine attack;
     //caracteristique de l'ennemi
@@ -40,8 +39,8 @@ public class Ennemi : MonoBehaviour
 
     private void Start()
     {
-       
 
+        gameManager = FindObjectOfType<GameManager>();
         
         anim = FindObjectOfType<Animator>();
         objective = GameObject.Find("Objective");
@@ -52,12 +51,7 @@ public class Ennemi : MonoBehaviour
     }
     private void Update()
     {
-        anim.SetFloat("Speed", agent.velocity.magnitude);
-        if (!objective)
-        {
-            StopCoroutine(attack);
-            anim?.SetBool("Attacks", false);
-        }
+        anim.SetFloat("Speed", agent.velocity.magnitude); 
     }
     //-----------------------------
 
@@ -70,38 +64,37 @@ public class Ennemi : MonoBehaviour
             if(attack != null)
             {
                 StopCoroutine(attack);
-                anim?.SetBool("Attacks", false);
             }
             if (!dead)
             {
                 agent.isStopped = true;
                 anim?.SetTrigger("Death");
-                manager.money += 10;
                 dead = true;
             }
-
+            gameManager.ennemiMort += 1;
             Destroy(gameObject, 2);
+           
         }
     }
 
    
 
-    public IEnumerator Attack(float waitTime)
+    public IEnumerator Attack(float waittime)
     {
         while (true)
         {
             anim?.SetBool("Attacks", true);
-            if (objective)
+            if (target)
             {
                 target?.parent?.GetComponent<ObjectiveBehaviour>()?.GetDamage(damage);
             }
             else
             {
-                anim?.SetBool("Attacks", false);
                 StopCoroutine(attack);
+                anim?.SetBool("Attacks", false);
             }
 
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(rate);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -109,8 +102,7 @@ public class Ennemi : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && agent.remainingDistance < 3)
         {
-            agent.isStopped = true;
-            attack = StartCoroutine(Attack(rate));
+            StartCoroutine(Attack(rate));
         }
     }
 

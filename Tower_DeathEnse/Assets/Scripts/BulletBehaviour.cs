@@ -12,11 +12,14 @@ public class BulletBehaviour : MonoBehaviour
 
     private float initializationTime;
 
+    [SerializeField]
+    private GameObject impactParticle;
+
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transform.up * force, ForceMode.Impulse);
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +31,11 @@ public class BulletBehaviour : MonoBehaviour
             {
                 other.GetComponent<Ennemi>().GetDamage(damage);
             }
-            Destroy(gameObject);
+
+            impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, Vector3.zero)) as GameObject;
+            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();
+            transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Stop();
         }
     }
 }

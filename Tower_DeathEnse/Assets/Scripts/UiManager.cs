@@ -12,16 +12,16 @@ public class UiManager : MonoBehaviour
     public static UiManager instance { get; private set; }
 
 
-    void awake()
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(instance);
+            Destroy(gameObject);
         }
     }
 

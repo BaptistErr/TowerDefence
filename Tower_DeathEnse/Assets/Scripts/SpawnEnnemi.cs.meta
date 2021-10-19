@@ -3,7 +3,11 @@ guid: 9f9a1b10147aab34aa264cab8508d6b5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - target: {instanceID: 0}
+  - Spawnee: {fileID: 1512702162602476555, guid: 6c3976e952ea01d41a8ab25d94dffb3d, type: 3}
+  - Spawnee2: {fileID: 8520723714916031278, guid: 0b932f329e2ed604dbe4d9611beee3d9, type: 3}
+  - agent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

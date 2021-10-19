@@ -1800,6 +1800,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 995051858}
+    - target: {fileID: 3604300343017183547, guid: 5ad25f78756aad2498f42299c44cbdb2, type: 3}
+      propertyPath: Spawnee2
+      value: 
+      objectReference: {fileID: 8520723714916031278, guid: 0b932f329e2ed604dbe4d9611beee3d9, type: 3}
     - target: {fileID: 3604300343017183548, guid: 5ad25f78756aad2498f42299c44cbdb2, type: 3}
       propertyPath: m_Name
       value: Spawner

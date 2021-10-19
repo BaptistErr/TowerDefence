@@ -9,6 +9,7 @@ public class SpawnEnnemi : MonoBehaviour
     //déclaration du NavMesh
     public Transform target;
     public GameObject Spawnee;
+    public GameObject Spawnee2;
     public NavMeshAgent agent;
 
     //object gameManager
@@ -21,7 +22,9 @@ public class SpawnEnnemi : MonoBehaviour
     //compteurs d'ennemi
     private int NbGlobalEnnemi = 0; // global
     private int nbEnnemiVague; // par vague
-    int compteurVague = 0; 
+    int compteurVague = 0;
+    int compteurennemi;
+    bool typeennemi;
 
     void Start()
     {
@@ -67,21 +70,36 @@ public class SpawnEnnemi : MonoBehaviour
         if (nbEnnemiVague < MaxParVague)
         {
             nbEnnemiVague += 1;
-            Instantiate(Spawnee, transform.position, transform.rotation);
-            Spawnee.GetComponent<Ennemi>().target = target;
+            if (compteurennemi < 3)
+            {
+                if (typeennemi == true)
+                {
+                    Instantiate(Spawnee, transform.position, transform.rotation);
+                    Spawnee.GetComponent<Ennemi>().target = target;
+                }
+                else
+                {
+                    Instantiate(Spawnee2, transform.position, transform.rotation);
+                    Spawnee2.GetComponent<Ennemi>().target = target;
+                }
+
+
+
+
+            }
         }
         else
         {
-            
+
             if (NbGlobalEnnemi < gameManager.nbMaxEnnemi)
             {
                 nbEnnemiVague = 0;
             }
-            
-                //arreter la coroutine 
-                StopCoroutine(ReguVague(5));
-                CancelInvoke("SpawnObjet");
-            
+
+            //arreter la coroutine 
+            StopCoroutine(ReguVague(5));
+            CancelInvoke("SpawnObjet");
+
         }
     }
 

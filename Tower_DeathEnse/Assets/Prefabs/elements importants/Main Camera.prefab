@@ -101,7 +101,8 @@ MonoBehaviour:
   manager: {fileID: 1500326529247986557, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
   minHeight: 10
   maxHeight: 90
-  ui: {fileID: 3988026503476812249, guid: 2d6c78e2de2fe70419fd110969c1e2f0, type: 3}
+  minX: -50
+  maxX: 50
 --- !u!54 &8313134279895498396
 Rigidbody:
   m_ObjectHideFlags: 0

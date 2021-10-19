@@ -14,6 +14,12 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float maxHeight;
 
+    [SerializeField]
+    private float minX;
+
+    [SerializeField]
+    private float maxX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +42,15 @@ public class CameraController : MonoBehaviour
         else if (transform.position.y >= maxHeight)
         {
             transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
+        }
+
+        if (transform.position.x <= minX)
+        {
+            transform.position = new Vector3(minX, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x >= maxX)
+        {
+            transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
         }
 
         if (Input.GetButtonDown("Fire1"))

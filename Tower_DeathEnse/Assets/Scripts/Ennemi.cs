@@ -41,8 +41,7 @@ public class Ennemi : MonoBehaviour
     {
 
         gameManager = FindObjectOfType<GameManager>();
-        
-        anim = FindObjectOfType<Animator>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
         objective = GameObject.Find("Objective");
         target = objective?.transform;
         destination = target.transform.position;

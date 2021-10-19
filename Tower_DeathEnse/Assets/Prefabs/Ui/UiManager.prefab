@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089978760641401424}
+  - component: {fileID: 6461475302366578057}
   m_Layer: 0
   m_Name: UiManager
   m_TagString: Untagged
@@ -30,3 +31,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6461475302366578057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991517665865754367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4472c3862fbe1ef41b8d0733c73fbb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasVictoire: {fileID: 8857719807073618023, guid: f8ea08ec98cd2fd46be3ced2cdc3cbaa, type: 3}
+  CanvasDefaite: {fileID: 3864843000849542874, guid: d3541e42926e87744b7d1c79dba7188f, type: 3}

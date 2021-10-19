@@ -6,7 +6,7 @@ public class ObjectiveBehaviour : MonoBehaviour
 {
     GameManager gameManager;
     [SerializeField]
-    public int health;
+    public int health=1000;
 
     // Start is called before the first frame update
     void Start()

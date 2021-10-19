@@ -5,76 +5,67 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int money;
+    // Manager 
+    public static GameManager instance { get; private set; }
+    public UiManager uiManager;
+
+    //autre classe
     Camera cam;
-    bool bvictoire ;
-    bool bdefaite ;
-    public static GameManager instance { get;private set; }
-
-    SpawnEnnemi spawnEnnemi;
     ObjectiveBehaviour objective;
-    
-    private Collider towerUpgradeMenu;
 
+    //regle du jeu
+    public int money;
+    public int? vieobjectif;
+    public int nbMaxEnnemi;
+    public int ennemiMort;
+
+    
+
+
+    // tourelle pour les placements sur les slots 
+    public UnityEngine.Object tower;
+    private Collider towerUpgradeMenu;
     [SerializeField]
     private UnityEngine.Object uiUpgrade;
 
     public GameObject upgradeMenu;
 
-    // tourelle pour les placements sur les slots 
-    public UnityEngine.Object tower;
-    
-    
     // variable pour la victoire / défaite 
-   
-    public int ennemiMort;
-    public CanvasGroup canvasGroupV;
-    public CanvasGroup canvasGroupD;
-    public GameObject CanvasVictoire;
-    public GameObject CanvasDefaite;
-   
+    bool bvictoire;
+    bool bdefaite;
+    
+    
     private List<Collider> slotsOccupied = new List<Collider>();
-    public int vieobjectif ;
-    public int nbMaxEnnemi;
+   
     
 
     private void Awake()
     {
         
-        
+       
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
             Destroy(gameObject);
         }
-        cam = GetComponent<Camera>();
-        objective = FindObjectOfType<ObjectiveBehaviour>();
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
+        objective = GameObject.Find("Objective").GetComponent<ObjectiveBehaviour>();
         
-      
-            
-        
-        Reinitialiser();
-
-        
-
+        initialiser();
     }
     
-    public void Reinitialiser()
+    public void initialiser()
     {
-        CanvasVictoire = (GameObject)Instantiate(CanvasVictoire, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-        CanvasDefaite = (GameObject)Instantiate(CanvasDefaite, new Vector3(0, 45, -90), new Quaternion(45, 0, 0, 0));
-        canvasGroupV = CanvasVictoire.GetComponent<CanvasGroup>();
-
-        canvasGroupD = CanvasDefaite.GetComponent<CanvasGroup>();
-        CanvasVictoire.SetActive(false);
-        CanvasDefaite.SetActive(false);
+        //uiManager.SpawnUi();
         bvictoire = false;
         bdefaite = false;
-        vieobjectif = objective.health;
+        vieobjectif = objective?.health;
         nbMaxEnnemi = 2;
         money = 100;
         ennemiMort = 0;
@@ -101,7 +92,7 @@ public class GameManager : MonoBehaviour
     }
     private void victoire()
     {
-        CanvasVictoire.SetActive(true);
+        
         bvictoire = true;
         Debug.Log("c'est une victoire !");
         
@@ -109,10 +100,10 @@ public class GameManager : MonoBehaviour
     }
     private void defaite()
     {
-        CanvasDefaite.SetActive(true);
+       
         bdefaite = true;
         Debug.Log("c'est une Défaite");
-        cam.transform.position = new Vector3(0,45,-90);
+        
        
         
     }
@@ -151,15 +142,13 @@ public class GameManager : MonoBehaviour
     }
     public void BackToM()
     {
-        Destroy(CanvasVictoire);
-        Destroy(CanvasDefaite);
+        
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         
     }
     public void Continue()
     {
-        Destroy(CanvasVictoire);
-        Destroy(CanvasDefaite);
+       
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 

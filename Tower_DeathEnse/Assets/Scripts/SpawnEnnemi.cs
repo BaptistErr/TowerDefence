@@ -17,14 +17,14 @@ public class SpawnEnnemi : MonoBehaviour
 
 
     //déclaration des vagues d'énnemis    
-    private int MaxParVague =2;
+    private int MaxParVague =4;
     private int nbvague;
     //compteurs d'ennemi
     private int NbGlobalEnnemi = 0; // global
     private int nbEnnemiVague; // par vague
     int compteurVague = 0;
     int compteurennemi;
-    bool typeennemi;
+    
 
     void Start()
     {
@@ -70,27 +70,24 @@ public class SpawnEnnemi : MonoBehaviour
         if (nbEnnemiVague < MaxParVague)
         {
             nbEnnemiVague += 1;
-            if (compteurennemi < 3)
+            if (compteurennemi <= 3)
             {
-                if (typeennemi == true)
+                if (compteurennemi<2)
                 {
                     Instantiate(Spawnee, transform.position, transform.rotation);
                     Spawnee.GetComponent<Ennemi>().target = target;
                 }
                 else
                 {
-                    Instantiate(Spawnee2, transform.position, transform.rotation);
+                    Instantiate(Spawnee2, transform.position , transform.rotation);
                     Spawnee2.GetComponent<Ennemi>().target = target;
                 }
-
-
-
-
+                compteurennemi += 1;
             }
-        }
+          }
         else
         {
-
+            compteurennemi = 0;
             if (NbGlobalEnnemi < gameManager.nbMaxEnnemi)
             {
                 nbEnnemiVague = 0;

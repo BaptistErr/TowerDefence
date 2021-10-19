@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TowerBehaviour : MonoBehaviour
 {
+    //public AudioSource sonTourelle;
     [SerializeField]
     private GameObject bullet;
 
@@ -28,10 +29,11 @@ public class TowerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //sonTourelle = GetComponent<AudioSource>();
         cannonGraphic = cannon.GetChild(0);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (target)
@@ -91,6 +93,7 @@ public class TowerBehaviour : MonoBehaviour
     {
         while(true)
         {
+            //sonTourelle.PlayClipAtPoint(sonTourelle, cacannonGraphic.position, float volume = 1.0F);
             Instantiate(bullet, cannonGraphic.position, cannonGraphic.rotation * Quaternion.Euler(90, 0, 0));
             bullet.GetComponent<BulletBehaviour>().damage = defaultDamage * level;
             yield return new WaitForSeconds(1f);

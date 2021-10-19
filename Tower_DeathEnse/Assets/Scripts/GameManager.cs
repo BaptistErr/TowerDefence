@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     //regle du jeu
     public int money=100;
     public int? vieobjectif;
-    public int nbMaxEnnemi=2;
-    public int ennemiMort=0;
+    public int nbMaxEnnemi;
+    public int ennemiMort;
 
-    
+    //son victoire/defaite
+    //public AudioSource sonVictoire;
+    //public AudioSource sonDefaite;
 
 
     // tourelle pour les placements sur les slots 
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //sonVictoire = GetComponent<AudioSource>();
+        //sonDefaite = GetComponent<AudioSource();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
         objective = GameObject.Find("Objective").GetComponent<ObjectiveBehaviour>();
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
         bvictoire = false;
         bdefaite = false;
         vieobjectif = objective?.health;
-        nbMaxEnnemi = 2;
+        nbMaxEnnemi = 6;
         money = 100;
         
         ennemiMort = 0;
@@ -95,6 +99,7 @@ public class GameManager : MonoBehaviour
     }
     private void victoire()
     {
+        //sonVictoire.play();
         uiManager.SpawnUiV();
         bvictoire = true;
         Debug.Log("c'est une victoire !");
@@ -103,6 +108,7 @@ public class GameManager : MonoBehaviour
     }
     private void defaite()
     {
+        //sonDefaite.play();
         uiManager.SpawnUiD();
         bdefaite = true;
         Debug.Log("c'est une Défaite");

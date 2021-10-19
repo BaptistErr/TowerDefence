@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    //public AudioSource sonBoulet;
+    //public AudioSource sonHitEnnemi;
     [SerializeField]
     private float force;
 
@@ -15,9 +17,12 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject impactParticle;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
+        //sonBoulet = GetComponent<AudioSource>();
+        //sonHitEnnemi = GetComponent<AudioSource>();
+
         GetComponent<Rigidbody>().AddForce(transform.up * force, ForceMode.Impulse);
         Destroy(gameObject, 1);
     }
@@ -29,10 +34,12 @@ public class BulletBehaviour : MonoBehaviour
         {
             if(layer == LayerMask.NameToLayer("Enemy"))
             {
+                //sonBoulet.PlayClipAtPoint(sonHitEnnemi, other.transform.position, float volume = 1.0F);
                 other.GetComponent<Ennemi>().GetDamage(damage);
             }
 
             impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, Vector3.zero)) as GameObject;
+            //sonBoulet.PlayClipAtPoint(sonBoulet, Vector3 position, float volume = 1.0F);
             Destroy(impactParticle, 3);
             transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();

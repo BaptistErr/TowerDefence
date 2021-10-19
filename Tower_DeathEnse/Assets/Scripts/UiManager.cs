@@ -17,17 +17,20 @@ public class UiManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(instance);
+            Destroy(gameObject);
         }
     }
 
-    public void SpawnUi()
+    public void SpawnUiV()
     {
         CanvasVictoire = (GameObject)Instantiate(CanvasVictoire, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+    }
+    public void SpawnUiD()
+    {
         CanvasDefaite = (GameObject)Instantiate(CanvasDefaite, new Vector3(0, 45, -90), new Quaternion(45, 0, 0, 0));
     }
    
@@ -36,9 +39,17 @@ public class UiManager : MonoBehaviour
         Destroy(CanvasVictoire);
         Destroy(CanvasDefaite);
     }
-    public void ChangeStateUi(GameObject Canvas)
+    public void ChangeStateUi(int index)
     {
-        Canvas.SetActive(!Canvas);
+        if( index==0)
+        {
+            CanvasVictoire.SetActive(!CanvasVictoire);
+        }
+        else
+        {
+            CanvasDefaite.SetActive(!CanvasDefaite);
+        }
+        
     }
         
         

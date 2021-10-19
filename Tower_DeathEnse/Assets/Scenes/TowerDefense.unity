@@ -2146,6 +2146,8 @@ MonoBehaviour:
   manager: {fileID: 4123259086862909959, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
   minHeight: 10
   maxHeight: 90
+  minX: -50
+  maxX: 50
 --- !u!1001 &1067674041
 PrefabInstance:
   m_ObjectHideFlags: 0

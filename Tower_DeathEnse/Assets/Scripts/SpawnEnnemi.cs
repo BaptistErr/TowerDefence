@@ -26,7 +26,7 @@ public class SpawnEnnemi : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        nbvague = gameManager.nbMaxEnnemi / MaxParVague; 
+        nbvague = gameManager.nbMaxEnnemi / MaxParVague;
         jeux();
     }
     public void jeux()

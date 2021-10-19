@@ -87,7 +87,7 @@ public class Ennemi : MonoBehaviour
             anim?.SetBool("Attacks", true);
             if (target)
             {
-                target?.parent?.GetComponent<ObjectiveBehaviour>()?.GetDamage(damage);
+                target?.GetComponentInParent<ObjectiveBehaviour>()?.GetDamage(damage);
             }
             else
             {

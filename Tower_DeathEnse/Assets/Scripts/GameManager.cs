@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         vieobjectif = objective?.health;
         nbMaxEnnemi = 2;
         money = 100;
-        Debug.Log("ennemi mort : " + ennemiMort);
+        
         ennemiMort = 0;
        
     }
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         {
             if (bvictoire == false)
             {
+                initialiser();
                 victoire();
             }
         }
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
         {
             if (bdefaite == false)
             {
+                initialiser();
                 defaite();
             }
             }

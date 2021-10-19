@@ -30,16 +30,18 @@ public class GameManager : MonoBehaviour
     public int ennemiMort;
     public CanvasGroup canvasGroupV;
     public CanvasGroup canvasGroupD;
-    public GameObject canvasGrpVictoire;
-    public GameObject canvasGrpDefaite;
+    public GameObject CanvasVictoire;
+    public GameObject CanvasDefaite;
    
     private List<Collider> slotsOccupied = new List<Collider>();
-    public int? vieobjectif ;
+    public int vieobjectif ;
     public int nbMaxEnnemi;
-    //public int lvl=0;
+    
 
     private void Awake()
     {
+        
+        
         if (instance == null)
         {
             instance = this;
@@ -51,30 +53,32 @@ public class GameManager : MonoBehaviour
         }
         cam = GetComponent<Camera>();
         objective = FindObjectOfType<ObjectiveBehaviour>();
-
-        canvasGroupV = canvasGrpVictoire?.GetComponent<CanvasGroup>();
         
+      
+            
         
-        canvasGroupD = canvasGrpDefaite?.GetComponent<CanvasGroup>();
-     
-
         Reinitialiser();
 
-
+        
 
     }
+    
     public void Reinitialiser()
     {
-        canvasGrpVictoire.SetActive(false);
-        canvasGrpDefaite.SetActive(false);
+        CanvasVictoire = (GameObject)Instantiate(CanvasVictoire, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        CanvasDefaite = (GameObject)Instantiate(CanvasDefaite, new Vector3(0, 45, -90), new Quaternion(45, 0, 0, 0));
+        canvasGroupV = CanvasVictoire.GetComponent<CanvasGroup>();
+
+        canvasGroupD = CanvasDefaite.GetComponent<CanvasGroup>();
+        CanvasVictoire.SetActive(false);
+        CanvasDefaite.SetActive(false);
         bvictoire = false;
         bdefaite = false;
-        vieobjectif = objective?.health;
+        vieobjectif = objective.health;
         nbMaxEnnemi = 2;
         money = 100;
         ennemiMort = 0;
-        canvasGroupV.alpha = 0;
-        canvasGroupD.alpha = 0;
+       
     }
     private void FixedUpdate()
     {
@@ -97,19 +101,19 @@ public class GameManager : MonoBehaviour
     }
     private void victoire()
     {
-        canvasGrpVictoire.SetActive(true);
+        CanvasVictoire.SetActive(true);
         bvictoire = true;
         Debug.Log("c'est une victoire !");
-        canvasGroupV.alpha = 1;
+        
        
     }
     private void defaite()
     {
-        canvasGrpDefaite.SetActive(true);
+        CanvasDefaite.SetActive(true);
         bdefaite = true;
         Debug.Log("c'est une Défaite");
         cam.transform.position = new Vector3(0,45,-90);
-        canvasGroupD.alpha = 1;
+       
         
     }
 
@@ -147,12 +151,15 @@ public class GameManager : MonoBehaviour
     }
     public void BackToM()
     {
-        //lvl = 0;
+        Destroy(CanvasVictoire);
+        Destroy(CanvasDefaite);
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+        
     }
     public void Continue()
     {
-        //lvl += 1;
+        Destroy(CanvasVictoire);
+        Destroy(CanvasDefaite);
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 

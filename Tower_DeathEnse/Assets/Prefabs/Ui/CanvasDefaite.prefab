@@ -403,7 +403,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4123259086862909959, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Reinitialiser
+        m_MethodName: initialiser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

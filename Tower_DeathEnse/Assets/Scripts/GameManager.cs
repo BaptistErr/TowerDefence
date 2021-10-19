@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     ObjectiveBehaviour objective;
 
     //regle du jeu
-    public int money;
+    public int money=100;
     public int? vieobjectif;
-    public int nbMaxEnnemi;
-    public int ennemiMort;
+    public int nbMaxEnnemi=2;
+    public int ennemiMort=0;
 
     
 
@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject upgradeMenu;
 
     // variable pour la victoire / défaite 
-    bool bvictoire;
-    bool bdefaite;
+    bool bvictoire = false;
+    bool bdefaite = false;
     
     
     private List<Collider> slotsOccupied = new List<Collider>();
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         vieobjectif = objective?.health;
         nbMaxEnnemi = 2;
         money = 100;
+        Debug.Log("ennemi mort : " + ennemiMort);
         ennemiMort = 0;
        
     }

@@ -40,7 +40,7 @@ public class Ennemi : MonoBehaviour
     private void Start()
     {
 
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         objective = GameObject.Find("Objective");
         target = objective?.transform;

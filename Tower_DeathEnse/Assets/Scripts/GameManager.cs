@@ -163,10 +163,10 @@ public class GameManager : MonoBehaviour
          Instantiate(upgradetower,cible.transform.position + new Vector3(0f, 3f), Quaternion.identity);
 
 
-     }
+     }*/
+
      public void SellButton()
      {
          Debug.Log("Vente");
      }
-    */
 }

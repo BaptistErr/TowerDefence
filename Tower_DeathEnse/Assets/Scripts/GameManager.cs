@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     
     public void initialiser()
     {
-        //uiManager.SpawnUi();
+        
         bvictoire = false;
         bdefaite = false;
         vieobjectif = objective?.health;
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     }
     private void victoire()
     {
-        
+        uiManager.SpawnUiV();
         bvictoire = true;
         Debug.Log("c'est une victoire !");
         
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     }
     private void defaite()
     {
-       
+        uiManager.SpawnUiD();
         bdefaite = true;
         Debug.Log("c'est une Défaite");
         

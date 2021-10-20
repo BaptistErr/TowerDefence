@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d743c00c9a862124fab277b054e360f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 6461475302366578057, guid: 235ed19619151c64ab5183919f29ac54, type: 3}
-  money: 0
-  nbMaxEnnemi: 12
+  uiManager: {fileID: 0}
+  money: 100
+  nbMaxEnnemi: 6
   ennemiMort: 0
   tower: {fileID: 8575385075007725862, guid: cd21d8e3a3875184daf96be296f76614, type: 3}
-  uiUpgrade: {fileID: 3988026503476812249, guid: 2d6c78e2de2fe70419fd110969c1e2f0, type: 3}
+  uiUpgrade: {fileID: 6391205269063247670, guid: 0d4bd9991aef07340a55d51356c6b7c5, type: 3}
   upgradeMenu: {fileID: 0}

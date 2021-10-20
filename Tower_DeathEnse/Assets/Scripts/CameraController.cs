@@ -60,13 +60,13 @@ public class CameraController : MonoBehaviour
             //pour ouvrir le shop des améliorations il faut modifier l'operateur binaire dans le script caméra pour qu'il puisse vérifier si il touche une tourelle ou un slot de tourelle 
             //1 << layer..............
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, (1 << LayerMask.NameToLayer("Position") | 1 << LayerMask.NameToLayer("Upgrade"))))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position") | 1 << LayerMask.NameToLayer("Upgrade")))
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Position"))
                 {
                     manager.PlaceTower(hit);
                 }
-                else
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Upgrade"))
                 {
                     manager.UpgradeMenu(hit);
                 }

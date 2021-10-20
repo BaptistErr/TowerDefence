@@ -1563,14 +1563,6 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1026713047}
-    - target: {fileID: 4123259086862909959, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
-      propertyPath: CanvasDefaite
-      value: 
-      objectReference: {fileID: 3864843000849542874, guid: d3541e42926e87744b7d1c79dba7188f, type: 3}
-    - target: {fileID: 4123259086862909959, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
-      propertyPath: CanvasVictoire
-      value: 
-      objectReference: {fileID: 8857719807073618023, guid: f8ea08ec98cd2fd46be3ced2cdc3cbaa, type: 3}
     - target: {fileID: 4123259086862910009, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
       propertyPath: m_Name
       value: GameManager

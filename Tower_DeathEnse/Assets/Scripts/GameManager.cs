@@ -12,12 +12,13 @@ public class GameManager : MonoBehaviour
     //autre classe
     Camera cam;
     ObjectiveBehaviour objective;
-
+    
     //regle du jeu
     public int money=100;
-    public int? vieobjectif;
+    public int vieobjectif;
     public int nbMaxEnnemi;
     public int ennemiMort;
+    public int level;
 
     //son victoire/defaite
     //public AudioSource sonVictoire;
@@ -59,25 +60,28 @@ public class GameManager : MonoBehaviour
         //sonDefaite = GetComponent<AudioSource();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
-        objective = GameObject.Find("Objective").GetComponent<ObjectiveBehaviour>();
         
+
         initialiser();
     }
     
     public void initialiser()
     {
-        
+      
         bvictoire = false;
         bdefaite = false;
-        vieobjectif = objective?.health;
-        nbMaxEnnemi = 6;
+        vieobjectif = 1000;
+        nbMaxEnnemi = 20;
         money = 100;
         
         ennemiMort = 0;
        
     }
+
+    
     private void FixedUpdate()
     {
+       
         if ( ennemiMort == nbMaxEnnemi)
         {
             if (bvictoire == false)
@@ -108,7 +112,9 @@ public class GameManager : MonoBehaviour
     }
     private void defaite()
     {
+
         //sonDefaite.play();
+       // float travelling Mathf.Lerp()
         uiManager.SpawnUiD();
         bdefaite = true;
         Debug.Log("c'est une Défaite");
@@ -151,13 +157,13 @@ public class GameManager : MonoBehaviour
     }
     public void BackToM()
     {
-        
+        level = 0;
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         
     }
     public void Continue()
     {
-       
+        level += 1;
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 

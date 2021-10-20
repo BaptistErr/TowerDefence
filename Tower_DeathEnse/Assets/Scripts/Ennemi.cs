@@ -43,7 +43,7 @@ public class Ennemi : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         objective = GameObject.Find("Objective");
-        target = objective?.transform;
+        target = objective.transform;
         destination = target.transform.position;
         destination += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
         agent.SetDestination(destination);
@@ -70,7 +70,7 @@ public class Ennemi : MonoBehaviour
                 Debug.Log("ennemi mort : " + gameManager.ennemiMort);
                 gameManager.money += 10;
                 agent.isStopped = true;
-                anim?.SetTrigger("Death");
+                anim.SetTrigger("Death");
                 dead = true;
             }
             Destroy(gameObject, 2);
@@ -84,15 +84,15 @@ public class Ennemi : MonoBehaviour
     {
         while (true)
         {
-            anim?.SetBool("Attacks", true);
+            anim.SetBool("Attacks", true);
             if (target)
             {
-                target?.GetComponentInParent<ObjectiveBehaviour>()?.GetDamage(damage);
+                target.GetComponentInParent<ObjectiveBehaviour>().GetDamage(damage);
             }
             else
             {
                 StopCoroutine(attack);
-                anim?.SetBool("Attacks", false);
+                anim.SetBool("Attacks", false);
             }
 
             yield return new WaitForSeconds(rate);
@@ -103,7 +103,7 @@ public class Ennemi : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && agent.remainingDistance < 3)
         {
-            StartCoroutine(Attack(rate));
+            attack = StartCoroutine(Attack(rate));
         }
     }
 

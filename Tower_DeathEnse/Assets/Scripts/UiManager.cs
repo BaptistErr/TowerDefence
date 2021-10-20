@@ -31,7 +31,7 @@ public class UiManager : MonoBehaviour
     }
     public void SpawnUiD()
     {
-        Instantiate(CanvasDefaite, new Vector3(0, 45, -90), new Quaternion(45, 0, 0, 0));
+        Instantiate(CanvasDefaite, new Vector3(0, 45, -90), new Quaternion(0, 0, 0, 0));
     }
    
      public void DestructionUi()

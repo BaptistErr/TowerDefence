@@ -6,24 +6,20 @@ public class ObjectiveBehaviour : MonoBehaviour
 {
     GameManager gameManager;
     [SerializeField]
-    public int health=1000;
+    private int health;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void GetDamage(int damage)
     {
-        health -= damage;
+        
+        gameManager.vieobjectif -= damage;
+        health = gameManager.vieobjectif;
+        Debug.Log("vie Objectif: " + health);
         if (health <= 0)
         {
             Destroy(gameObject);

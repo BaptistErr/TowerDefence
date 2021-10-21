@@ -520,7 +520,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4536877784254854173
 MonoBehaviour:
@@ -536,5 +536,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7835249690893709366, guid: 568e6adc129d506438f8fe5686cfcddf, type: 3}
   cannon: {fileID: 7039022478516135229}
-  defaultDamage: 10
+  defaultDamage: 40
   level: 2

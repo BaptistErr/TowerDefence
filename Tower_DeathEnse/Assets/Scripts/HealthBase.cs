@@ -9,11 +9,12 @@ public class HealthBase : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-   // public Text money;
+    public Text money;
+    int argent;
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        //money = GetComponent<Text>();
+        money = GetComponent<Text>();
     }
     public void SetMaxHealth(int health)
     {
@@ -29,8 +30,9 @@ public class HealthBase : MonoBehaviour
     }
     public void DisplayMoney()
     {
-        int argent = gameManager.GetMoney();
-       // money.text = argent.ToString();
+         argent = gameManager.GetMoney();
+        Debug.Log(argent);
+         //money.text = argent.ToString();
     }
     private void Update()
     {

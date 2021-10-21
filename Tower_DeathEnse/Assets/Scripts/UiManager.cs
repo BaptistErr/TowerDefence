@@ -7,7 +7,7 @@ public class UiManager : MonoBehaviour
     
     public GameObject CanvasVictoire;
     public GameObject CanvasDefaite;
-
+    
 
     public static UiManager instance { get; private set; }
 
@@ -31,7 +31,7 @@ public class UiManager : MonoBehaviour
     }
     public void SpawnUiD()
     {
-        Instantiate(CanvasDefaite, new Vector3(0, 45, -90), new Quaternion(0, 0, 0, 0));
+        Instantiate(CanvasDefaite, new Vector3(0, 45, 0), new Quaternion(0, 0, 0, 0));
     }
    
      public void DestructionUi()

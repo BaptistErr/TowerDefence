@@ -6,16 +6,19 @@ public class mainMenuScript : MonoBehaviour
 {
     
     public AudioSource sondDeBouton;
+   
     
     // Start is called before the first frame update
     void Start()
     {
         sondDeBouton = GetComponent<AudioSource>();
        
+       
     }
     public void jouer()
     {
         SceneManager.LoadScene("towerDefense");
+        
     }
     public void quitter()
     {

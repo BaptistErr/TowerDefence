@@ -5,20 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //test money
+    public HealthBase lvlui;
+
     // Manager 
     public static GameManager instance { get; private set; }
     public UiManager uiManager;
 
     //autre classe
-    Camera cam;
+  
     ObjectiveBehaviour objective;
+    
     
     //regle du jeu
     public int money=100;
     public int vieobjectif;
     public int nbMaxEnnemi;
     public int ennemiMort;
-    public int level;
+    public int level=0;
 
     //son victoire/defaite
     //public AudioSource sonVictoire;
@@ -44,13 +48,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        
-       
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else
         {
@@ -58,7 +59,8 @@ public class GameManager : MonoBehaviour
         }
         //sonVictoire = GetComponent<AudioSource>();
         //sonDefaite = GetComponent<AudioSource();
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+       
+        
         uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
         
 
@@ -67,11 +69,11 @@ public class GameManager : MonoBehaviour
     
     public void initialiser()
     {
-      
+       
         bvictoire = false;
         bdefaite = false;
         vieobjectif = 1000;
-        nbMaxEnnemi = 20;
+        nbMaxEnnemi = 8;
         money = 100;
         
         ennemiMort = 0;
@@ -86,18 +88,22 @@ public class GameManager : MonoBehaviour
         {
             if (bvictoire == false)
             {
-                initialiser();
                 victoire();
+                initialiser();
             }
         }
         if (vieobjectif <= 0 )
         {
             if (bdefaite == false)
-            {
-                initialiser();
+            {   
                 defaite();
+                initialiser();
             }
+            
+               
+            
             }
+       
 
 
     }
@@ -114,7 +120,6 @@ public class GameManager : MonoBehaviour
     {
 
         //sonDefaite.play();
-       // float travelling Mathf.Lerp()
         uiManager.SpawnUiD();
         bdefaite = true;
         Debug.Log("c'est une Défaite");

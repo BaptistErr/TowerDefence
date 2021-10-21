@@ -200,7 +200,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5986947558002931761}
+      - m_Target: {fileID: 2468302728638304069}
         m_TargetAssemblyTypeName: manageTower, Assembly-CSharp
         m_MethodName: Upgrade
         m_Mode: 1
@@ -333,8 +333,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5986947558002931761}
-        m_TargetAssemblyTypeName: manageTower, Assembly-CSharp
+      - m_Target: {fileID: 2468302728638304069}
+        m_TargetAssemblyTypeName: ManageTower, Assembly-CSharp
         m_MethodName: Sell
         m_Mode: 1
         m_Arguments:
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 8306114491383965881}
   - component: {fileID: 7142502847493438039}
   - component: {fileID: 6210173336008317836}
-  - component: {fileID: 5986947558002931761}
+  - component: {fileID: 2468302728638304069}
   m_Layer: 0
   m_Name: uiUpgrade
   m_TagString: Untagged
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6210173336008317836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5986947558002931761
+--- !u!114 &2468302728638304069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

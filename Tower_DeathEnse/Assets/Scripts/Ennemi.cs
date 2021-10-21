@@ -45,7 +45,15 @@ public class Ennemi : MonoBehaviour
         objective = GameObject.Find("Objective");
         target = objective.transform;
         destination = target.transform.position;
-        destination += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
+
+        if(FindObjectOfType<GameManager>().level == 0)
+        {
+            destination += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-4.6f, 4.6f));
+        }
+        else
+        {
+            destination += new Vector3(Random.Range(-4.6f, 4.6f), 0, Random.Range(-0.5f, 0.5f));
+        }
         agent.SetDestination(destination);
     }
     private void Update()

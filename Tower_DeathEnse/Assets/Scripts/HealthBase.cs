@@ -32,7 +32,7 @@ public class HealthBase : MonoBehaviour
     {
          argent = gameManager.GetMoney();
         Debug.Log(argent);
-         money.text = argent.ToString();
+         //money.text = argent.ToString();
     }
     private void Update()
     {

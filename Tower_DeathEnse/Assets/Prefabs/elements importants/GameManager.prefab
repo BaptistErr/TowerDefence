@@ -45,8 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
   money: 100
+  vieobjectif: 0
   nbMaxEnnemi: 6
   ennemiMort: 0
+  level: 0
   tower: {fileID: 8575385075007725862, guid: cd21d8e3a3875184daf96be296f76614, type: 3}
   uiUpgrade: {fileID: 6391205269063247670, guid: 0d4bd9991aef07340a55d51356c6b7c5, type: 3}
   upgradeMenu: {fileID: 0}
+  betterTower: {fileID: 818914567495981852, guid: 62021f5f4adb6fc499d425e0fd575696, type: 3}
+  smoke: {fileID: 2111360620059283915, guid: 99dd774d1073e444fa17768415323b96, type: 3}

@@ -1556,10 +1556,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4123259086862909959, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
-      propertyPath: objective
-      value: 
-      objectReference: {fileID: -6446125373892907037, guid: 8a3a6629b5b00c84f8d9c1151284bb0d, type: 3}
-    - target: {fileID: 4123259086862909959, guid: 3cc762bd36349174791e959ee09a77ab, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1026713047}

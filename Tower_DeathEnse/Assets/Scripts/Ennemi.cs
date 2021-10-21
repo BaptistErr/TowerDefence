@@ -67,7 +67,6 @@ public class Ennemi : MonoBehaviour
             if (!dead)
             {
                 gameManager.ennemiMort += 1;
-                Debug.Log("ennemi mort : " + gameManager.ennemiMort);
                 gameManager.money += 10;
                 agent.isStopped = true;
                 anim.SetTrigger("Death");

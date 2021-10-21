@@ -38,7 +38,14 @@ public class TowerBehaviour : MonoBehaviour
     {
         if (target)
         {
-            cannon.LookAt(new Vector3(target.transform.position.x, cannon.transform.position.y, target.transform.position.z));
+            if(level == 1)
+            {
+                cannon.LookAt(new Vector3(target.transform.position.x, cannon.transform.position.y, target.transform.position.z));
+            }
+            else
+            {
+                cannon.LookAt(new Vector3(target.transform.position.x, target.transform.position.y - 5, target.transform.position.z));
+            }
             cannonGraphic.LookAt(target.transform);
         }
         else if (targets.Count != 0)
@@ -64,7 +71,15 @@ public class TowerBehaviour : MonoBehaviour
             if (!target)
             {
                 target = targets[0];
-                cannon.LookAt(target.transform.position);
+                if (level == 1)
+                {
+                    cannon.LookAt(new Vector3(target.transform.position.x, cannon.transform.position.y, target.transform.position.z));
+                }
+                else
+                {
+                    cannon.LookAt(new Vector3(target.transform.position.x, target.transform.position.y - 5, target.transform.position.z));
+                }
+                cannonGraphic.LookAt(target.transform);
                 shoot = StartCoroutine(Shoot());
                 shooting = true;
             }

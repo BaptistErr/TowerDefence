@@ -14,7 +14,7 @@ public class ObjectiveBehaviour : MonoBehaviour
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        lvlui = GameObject.Find("BaseHealthBar").GetComponentInChildren<HealthBase>();
+        lvlui = GameObject.Find("BaseHealthBar").GetComponent<HealthBase>();
         lvlui.SetMaxHealth(gameManager.vieobjectif);
 
     }

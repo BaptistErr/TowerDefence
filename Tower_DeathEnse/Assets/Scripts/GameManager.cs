@@ -131,8 +131,8 @@ public class GameManager : MonoBehaviour
     {
         if (!slotsOccupied.Contains(slot.collider) && money >= 50)
         {
-            smoke = Instantiate(smoke, slot.transform.position, Quaternion.identity);
-            Destroy(smoke, 3);
+            GameObject smokeSpawned = Instantiate(smoke, slot.transform.position, Quaternion.identity);
+            Destroy(smokeSpawned, 3);
             Instantiate(tower, slot.transform.position, Quaternion.identity);
             slotsOccupied.Add(slot.collider);
             money -= 50;

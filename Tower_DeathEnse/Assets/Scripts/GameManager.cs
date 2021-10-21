@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour
         }
         if (vieobjectif <= 0 )
         {
+
+
             if (bdefaite == false)
             {   
                 defaite();
@@ -186,7 +188,7 @@ public class GameManager : MonoBehaviour
     {
         if (money >= 70)
         {
-            money -= 70;
+            SetMoney(-70);
             GameObject upgradedTower = ui.transform.parent.parent.parent.gameObject;
             Destroy(upgradedTower);
             GameObject upgrade = (GameObject) Instantiate(betterTower, upgradedTower.transform.position, upgradedTower.transform.rotation);
@@ -198,8 +200,16 @@ public class GameManager : MonoBehaviour
 
      public void SellButton(GameObject ui)
     {
-        money += 30;
+        SetMoney(30);
         GameObject selledTower = ui.transform.parent.parent.parent.gameObject;
         Destroy(selledTower);
+    }
+    public int GetMoney()
+    {
+        return money;
+    }
+    public void SetMoney(int value)
+    {
+        money += value;
     }
 }

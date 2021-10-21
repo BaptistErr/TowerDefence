@@ -5,10 +5,16 @@ using UnityEngine.UI;
 
 public class HealthBase : MonoBehaviour
 {
+    public GameManager gameManager;
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public Text money;
+   // public Text money;
+    public void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //money = GetComponent<Text>();
+    }
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
@@ -21,8 +27,13 @@ public class HealthBase : MonoBehaviour
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
-    public void DisplayMoney(int argent)
+    public void DisplayMoney()
     {
-        money.text = argent.ToString();
+        int argent = gameManager.GetMoney();
+       // money.text = argent.ToString();
+    }
+    private void Update()
+    {
+        DisplayMoney();
     }
 }

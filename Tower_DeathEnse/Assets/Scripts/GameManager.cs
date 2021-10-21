@@ -100,8 +100,6 @@ public class GameManager : MonoBehaviour
         }
         if (vieobjectif <= 0 )
         {
-
-
             if (bdefaite == false)
             {   
                 defaite();
@@ -133,8 +131,8 @@ public class GameManager : MonoBehaviour
     {
         if (!slotsOccupied.Contains(slot.collider) && money >= 50)
         {
-            GameObject smokeSpawned = Instantiate(smoke, slot.transform.position, Quaternion.identity);
-            Destroy(smokeSpawned, 3);
+            smoke = Instantiate(smoke, slot.transform.position, Quaternion.identity);
+            Destroy(smoke, 3);
             Instantiate(tower, slot.transform.position, Quaternion.identity);
             slotsOccupied.Add(slot.collider);
             money -= 50;
@@ -181,7 +179,7 @@ public class GameManager : MonoBehaviour
     {
         if (money >= 70)
         {
-            SetMoney(-70);
+            money -= 70;
             GameObject upgradedTower = ui.transform.parent.parent.parent.gameObject;
             Destroy(upgradedTower);
             GameObject upgrade = (GameObject) Instantiate(betterTower, upgradedTower.transform.position, upgradedTower.transform.rotation);
@@ -193,16 +191,8 @@ public class GameManager : MonoBehaviour
 
      public void SellButton(GameObject ui)
     {
-        SetMoney(30);
+        money += 30;
         GameObject selledTower = ui.transform.parent.parent.parent.gameObject;
         Destroy(selledTower);
-    }
-    public int GetMoney()
-    {
-        return money;
-    }
-    public void SetMoney(int value)
-    {
-        money += value;
     }
 }

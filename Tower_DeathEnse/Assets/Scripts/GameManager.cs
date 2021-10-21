@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int vieobjectif;
     public int nbMaxEnnemi;
     public int ennemiMort;
-    public int level=0;
+    public int level;
 
     //son victoire/defaite
     //public AudioSource sonVictoire;
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
        
         
         uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
-        
+        level = 0;
 
         initialiser();
     }
@@ -79,7 +79,14 @@ public class GameManager : MonoBehaviour
         bvictoire = false;
         bdefaite = false;
         vieobjectif = 1000;
-        nbMaxEnnemi = 8;
+        if (level == 0)
+        {
+            nbMaxEnnemi = 8;
+        }
+        else
+        {
+            nbMaxEnnemi = 32;
+        }
         money = 100;
         
         ennemiMort = 0;
@@ -173,7 +180,7 @@ public class GameManager : MonoBehaviour
     }
     public void Continue()
     {
-        level += 1;
+        level = 1;
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 

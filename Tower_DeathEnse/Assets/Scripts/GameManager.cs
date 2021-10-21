@@ -37,6 +37,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject upgradeMenu;
 
+    [SerializeField]
+    private Object betterTower;
+
+    [SerializeField]
+    private GameObject smoke;
+
     // variable pour la victoire / défaite 
     bool bvictoire = false;
     bool bdefaite = false;
@@ -112,9 +118,6 @@ public class GameManager : MonoBehaviour
         //sonVictoire.play();
         uiManager.SpawnUiV();
         bvictoire = true;
-        Debug.Log("c'est une victoire !");
-        
-       
     }
     private void defaite()
     {
@@ -122,16 +125,14 @@ public class GameManager : MonoBehaviour
         //sonDefaite.play();
         uiManager.SpawnUiD();
         bdefaite = true;
-        Debug.Log("c'est une Défaite");
-        
-       
-        
     }
 
     public void PlaceTower(RaycastHit slot)
     {
         if (!slotsOccupied.Contains(slot.collider) && money >= 50)
         {
+            smoke = Instantiate(smoke, slot.transform.position, Quaternion.identity);
+            Destroy(smoke, 3);
             Instantiate(tower, slot.transform.position, Quaternion.identity);
             slotsOccupied.Add(slot.collider);
             money -= 50;
@@ -144,6 +145,7 @@ public class GameManager : MonoBehaviour
         if(!towerUpgradeMenu)
         {
             upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position + new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+            upgradeMenu.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
             towerUpgradeMenu = tower.collider;
         }
         else
@@ -156,6 +158,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 upgradeMenu = (GameObject) Instantiate(uiUpgrade, tower.collider.gameObject.transform.position + new Vector3(0, 10, 0), tower.collider.gameObject.transform.rotation, tower.collider.gameObject.transform);
+                upgradeMenu.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
                 towerUpgradeMenu = tower.collider;
             }
         }
@@ -172,17 +175,24 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 
-    /* public void UpgradeButton(GameObject upgradetower)
-     {
-         Debug.Log("amelioration");
-         RaycastHit
-         Instantiate(upgradetower,cible.transform.position + new Vector3(0f, 3f), Quaternion.identity);
+    public void UpgradeButton(GameObject ui)
+    {
+        if (money >= 70)
+        {
+            money -= 70;
+            GameObject upgradedTower = ui.transform.parent.parent.parent.gameObject;
+            Destroy(upgradedTower);
+            GameObject upgrade = (GameObject) Instantiate(betterTower, upgradedTower.transform.position, upgradedTower.transform.rotation);
+            upgrade.GetComponentInChildren<TowerBehaviour>().level++;
+        }
+        /*RaycastHit
+        Instantiate(upgradetower,cible.transform.position + new Vector3(0f, 3f), Quaternion.identity);*/
+    }
 
-
-     }*/
-
-     public void SellButton()
-     {
-         Debug.Log("Vente");
-     }
+     public void SellButton(GameObject ui)
+    {
+        money += 30;
+        GameObject selledTower = ui.transform.parent.parent.parent.gameObject;
+        Destroy(selledTower);
+    }
 }

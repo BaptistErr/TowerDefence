@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float maxX;
 
+    private bool clickedOnUI;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        clickedOnUI = false;
         manager = FindObjectOfType<GameManager>();
     }
 
@@ -60,21 +63,42 @@ public class CameraController : MonoBehaviour
             //pour ouvrir le shop des améliorations il faut modifier l'operateur binaire dans le script caméra pour qu'il puisse vérifier si il touche une tourelle ou un slot de tourelle 
             //1 << layer..............
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position") | 1 << LayerMask.NameToLayer("Upgrade")))
+            PointerEventData pointerData = new PointerEventData(EventSystem.current);
+            pointerData.position = Input.mousePosition;
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+            if (results.Count > 0)
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Position"))
+                if (results[0].gameObject.layer == LayerMask.NameToLayer("UpgradeButton"))
                 {
-                    manager.PlaceTower(hit);
+                    clickedOnUI = true;
+                    results.Clear();
                 }
-                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Upgrade"))
+            }
+
+
+
+
+            if (!clickedOnUI)
+            {
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Position") | 1 << LayerMask.NameToLayer("Upgrade")))
                 {
-                    manager.UpgradeMenu(hit);
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Upgrade"))
+                    {
+                        manager.UpgradeMenu(hit);
+                    }
+                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Position"))
+                    {
+                        manager.PlaceTower(hit);
+                        Destroy(manager.upgradeMenu, 0.1f);
+                    }
                 }
             }
             else if (manager.upgradeMenu)
             {
-                Destroy(manager.upgradeMenu);
+                Destroy(manager.upgradeMenu, 0.1f);
             }
+            clickedOnUI = false;
         }
     }
 }

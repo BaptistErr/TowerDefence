@@ -24,8 +24,11 @@ public class ObjectiveBehaviour : MonoBehaviour
        
         gameManager.vieobjectif -= damage;
         health = gameManager.vieobjectif;
+
         lvlui.SetHealth(health);
         Debug.Log("vie Objectif: " + health);
+
+
         if (health <= 0)
         {
             Destroy(gameObject);

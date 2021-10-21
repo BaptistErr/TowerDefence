@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7835249690893709366, guid: 568e6adc129d506438f8fe5686cfcddf, type: 3}
   cannon: {fileID: 7871117031778120610}
-  defaultDamage: 20
+  defaultDamage: 10
   level: 1
 --- !u!1 &8575385075007725862
 GameObject:

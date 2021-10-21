@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d743c00c9a862124fab277b054e360f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvlui: {fileID: 0}
   uiManager: {fileID: 0}
   money: 100
-  vieobjectif: 1000
-  nbMaxEnnemi: 8
+  vieobjectif: 0
+  nbMaxEnnemi: 6
   ennemiMort: 0
   level: 0
   tower: {fileID: 8575385075007725862, guid: cd21d8e3a3875184daf96be296f76614, type: 3}

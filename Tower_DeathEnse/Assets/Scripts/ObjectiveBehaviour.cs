@@ -11,10 +11,10 @@ public class ObjectiveBehaviour : MonoBehaviour
     [SerializeField]
     private int health;
 
-    public void Start()
+    public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        lvlui = GameObject.Find("BaseHealthBar").GetComponentInChildren<HealthBase>();
+        lvlui = GameObject.Find("BaseHealthBar").GetComponent<HealthBase>();
         lvlui.SetMaxHealth(gameManager.vieobjectif);
 
     }
@@ -26,6 +26,9 @@ public class ObjectiveBehaviour : MonoBehaviour
         health = gameManager.vieobjectif;
 
         lvlui.SetHealth(health);
+        Debug.Log("vie Objectif: " + health);
+
+
         if (health <= 0)
         {
             Destroy(gameObject);

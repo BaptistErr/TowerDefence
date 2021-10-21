@@ -7,11 +7,7 @@ public class UiManager : MonoBehaviour
     
     public GameObject CanvasVictoire;
     public GameObject CanvasDefaite;
-
-    private GameManager manager;
-
-    [SerializeField]
-    private GameObject canvasFin;
+    
 
     public static UiManager instance { get; private set; }
 
@@ -27,24 +23,15 @@ public class UiManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        manager = FindObjectOfType<GameManager>();
     }
 
     public void SpawnUiV()
     {
-        if(manager.level == 0)
-        {
-            Instantiate(CanvasVictoire, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-        }
-        else
-        {
-            Instantiate(canvasFin, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-        }
+        Instantiate(CanvasVictoire, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
     }
     public void SpawnUiD()
     {
-        Instantiate(CanvasDefaite, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        Instantiate(CanvasDefaite, new Vector3(0, 45, 0), new Quaternion(0, 0, 0, 0));
     }
    
      public void DestructionUi()
@@ -52,5 +39,11 @@ public class UiManager : MonoBehaviour
         Destroy(CanvasVictoire);
         Destroy(CanvasDefaite);
     }
+   
+   
+        
+   
+
+
 }
 

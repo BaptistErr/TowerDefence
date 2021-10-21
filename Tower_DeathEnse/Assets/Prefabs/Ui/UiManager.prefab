@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasVictoire: {fileID: 8857719807073618023, guid: f8ea08ec98cd2fd46be3ced2cdc3cbaa, type: 3}
-  CanvasDefaite: {fileID: 8857719807073618023, guid: 3f52583a4c1889448a263ceb2de24dfe, type: 3}
-  canvasFin: {fileID: 8857719807073618023, guid: da5bf273d8bb81844ae094e2978d8e5c, type: 3}
+  CanvasDefaite: {fileID: 3864843000849542874, guid: d3541e42926e87744b7d1c79dba7188f, type: 3}
